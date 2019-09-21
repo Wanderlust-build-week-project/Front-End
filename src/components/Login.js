@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import './Login.css';
+import { bgBlack } from "ansi-colors";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({username: "", password: ""});

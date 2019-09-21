@@ -19,8 +19,8 @@ function App() {
         <Route exact path= "/general-landing-page" component={GeneralLandingPage}/>
         <Route exact path= "/user-browsing-page" component={UserBrowsingPage} />
         <Route exact path = "/creator-viewing-page" component = {CreatorViewingPage} />
-        <Route exact path = "/creator-create-experiance-form" component = {CreatorCreateExperienceForm} />
-        <Route exact path = "/creator-update-experiance-form" component = {CreatorUpdateExperienceForm} />
+        <Route exact path = "/creator-create-experience-form" component = {CreatorCreateExperienceForm} />
+        <Route exact path = "/creator-update-experience-form" component = {CreatorUpdateExperienceForm} />
       </div>
     </Router>
   );
