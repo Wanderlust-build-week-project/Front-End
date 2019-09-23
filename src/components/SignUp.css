@@ -1,0 +1,6 @@
+body {
+    background-image: url('../images/login-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
