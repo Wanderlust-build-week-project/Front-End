@@ -128,7 +128,7 @@ const CreatorCreateExperienceForm = (props) => {
           </DateDurLoc>
           <ButtonSpan>
             <Button type="submit">Save</Button>
-            <Link to="/"><Button>Return</Button></Link>
+            <Link to="/creator-viewing-page"><Button>Return</Button></Link>
           </ButtonSpan>
         </Form>
       </NewExperience>
