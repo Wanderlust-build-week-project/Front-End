@@ -46,24 +46,24 @@ const Login = (props) => {
   `;
 
 
-//   const login = e => {
-//     e.preventDefault();
-//     axiosWithAuth()
-//       .post('', credentials)
-//       .then(res => {
-//         localStorage.setItem('token', res.data.payload);
-//         props.history.push('/');
-//         console.log(res)
-//       })
-//       .catch(err => console.log(err));
-//   };
+  const submitLogin = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post('', credentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
+        props.history.push('/');
+        console.log(res)
+      })
+      .catch(err => console.log(err));
+  };
 
 
   return (
     <>
       <Header />
       <Login>
-        <Form>
+        <Form onSubmit = {submitLogin}>
           <Input
           type="text"
           name="username"
