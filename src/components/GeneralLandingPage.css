@@ -1,0 +1,15 @@
+.create-or-find {
+  border: 2px solid purple;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gerneral-header-nav {
+  font-size: 1.4rem;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  border: 2px solid blue;
+}
