@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 import Header from './Header';
@@ -15,7 +15,7 @@ const SignUp = (props) => {
   const submitSignUp = e => {
     e.preventDefault();
     if (credentials.username && credentials.password && credentials.name) {
-        axiosWithAuth()
+        axios
         .post('https://wanderlustbw.herokuapp.com/auth/guests/register', credentials)
         .then(res => {
         //   localStorage.setItem('token', res.data.payload);
