@@ -9,12 +9,14 @@ import CreatorCreateExperienceForm from './components/Creators/CreatorCreateExpe
 import CreatorUpdateExperienceForm from './components/Creators/CeatorUpdateExperience'
 
 import Login from "./components/Login";
+import SignUp from "./components/SignUp"
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Route exact path="/" component={Login} />
+        <Route exact path= "/" component={SignUp} />
+        <Route exact path= "/login" component={Login} />
         {/* <PrivateRoute exact path="/general-landing-page" component={GeneralLandingPage}/> */}
         <Route exact path= "/general-landing-page" component={GeneralLandingPage}/>
         <Route exact path= "/user-browsing-page" component={UserBrowsingPage} />

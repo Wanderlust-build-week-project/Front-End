@@ -11,18 +11,17 @@ const Login = (props) => {
     setCredentials({...credentials, [e.target.name]: e.target.value});
   };
 
-//   const login = e => {
-//     e.preventDefault();
-//     axiosWithAuth()
-//       .post('', credentials)
-//       .then(res => {
-//         localStorage.setItem('token', res.data.payload);
-//         props.history.push('/');
-//         console.log(res)
-//       })
-//       .catch(err => console.log(err));
-//   };
-
+  const submitLogin = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post('', credentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
+        props.history.push('/');
+        console.log(res)
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <>
@@ -30,18 +29,18 @@ const Login = (props) => {
       <div className="login">
         <form className="form">
           <input className="input"
-          type="text"
-          name="username"
-          placeholder = "User Name"
-          value={credentials.username}
-          onChange={handleChange}
+            type="text"
+            name="username"
+            placeholder = "User Name"
+            value={credentials.username}
+            onChange={handleChange}
           />
           <input className="input"
-          type="password"
-          name="password"
-          placeholder = "Password"
-          value={credentials.password}
-          onChange={handleChange}
+            type="password"
+            name="password"
+            placeholder = "Password"
+            value={credentials.password}
+            onChange={handleChange}
           />
           <button className="btn">Log in</button>
         </form>
