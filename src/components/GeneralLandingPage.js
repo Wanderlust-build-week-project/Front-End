@@ -26,7 +26,7 @@ const Button = styled.button`
 `;
 
 const GeneralLanding = styled.div`
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -70,16 +70,16 @@ const GeneralLandingPage = props => {
       <GeneralLanding>
         <h1>Find a trip or create your own</h1>
         <div className="create-or-find">
-          <div className="find-experience">
+          <div className="create-or-find-btns">
+            <Button onClick={routeToCreateExp}>Create</Button>
+            <Button onClick={routeToUserBrowsing}>Serch for more trips</Button>
+          </div>
+
+          <div className="featured-experiences">
             <h2>Featured Experiences:</h2>
             <div>
               <FeaturedTrips />
             </div>
-            <Button onClick={routeToUserBrowsing}>Serch for more trips</Button>
-          </div>
-          <div className="create-own-experience">
-            <h2>Create Your Own Experiecne</h2>
-            <Button onClick={routeToCreateExp}>Create</Button>
           </div>
         </div>
       </GeneralLanding>
