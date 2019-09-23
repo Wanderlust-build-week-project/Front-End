@@ -14,9 +14,33 @@ const SignUp = (props) => {
 
   const submitSignUp = e => {
     e.preventDefault();
+    var cont = document.getElementById('checkIfOrganizerSignUp').children;
+    if (cont.checked) {
+        createOrganizer();
+    } else {
+        createUser();
+    }
+  }
+
+  const createUser = () => {
     if (credentials.username && credentials.password && credentials.name) {
         axios
         .post('https://wanderlustbw.herokuapp.com/auth/guests/register', credentials)
+        .then(res => {
+        //   localStorage.setItem('token', res.data.payload);
+          props.history.push('/login');
+          console.log(res)
+        })
+        .catch(err => console.log(err));
+    } else {
+        console.log("invalid")
+    }
+  };
+
+  const createOrganizer = () => {
+    if (credentials.username && credentials.password && credentials.name) {
+        axios
+        .post('https://wanderlustbw.herokuapp.com/auth/organizers/register', credentials)
         .then(res => {
         //   localStorage.setItem('token', res.data.payload);
           props.history.push('/login');
@@ -55,6 +79,10 @@ const SignUp = (props) => {
             value={credentials.name}
             onChange={handleChange}
           />
+          <div id = "checkIfOrganizerSignUp" className = "are-you">
+            <label for = "creator">Are you an Organizer?</label>
+            <input type = "checkbox" id = "creator" name = "creatorCheckbox" />
+          </div>
           <p className="already">Already Have an account?</p>
           <Link className="redirect" to = "/login" >Log in here</Link>
           <button className="btn">Sign Up</button>
