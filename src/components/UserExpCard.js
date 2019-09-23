@@ -20,6 +20,7 @@ const UserExpCard = (props) => {
                             <CardLink href="#">Register</CardLink>
                             <CardLink href="#">Rate</CardLink>
                         </CardBody>
+                
                     </Card>
                 </Col>
             </Row>
