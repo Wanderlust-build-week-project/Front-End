@@ -8,7 +8,7 @@ import './CVP.css';
 
 const CreatorViewingPage = (props) => {
 
-  const user = "";
+  const user = "admin";
   const api = `https://wanderlustbw.herokuapp.com/experiences/organizer/name/${user}`;
 
   const [experiences, setExperiences] = useState([{
@@ -17,7 +17,7 @@ const CreatorViewingPage = (props) => {
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     date: "09/23/2019 1PM",
     duration: 1,
-    location_id: "Guam",
+    location_id: 1,
     completed: false
   }]);
 
