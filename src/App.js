@@ -9,7 +9,8 @@ import CreatorCreateExperienceForm from './components/Creators/CreatorCreateExpe
 import CreatorUpdateExperienceForm from './components/Creators/CeatorUpdateExperience'
 
 import Login from "./components/Login";
-import SignUp from "./components/SignUp"
+import SignUp from "./components/SignUp";
+
 
 function App() {
   return (
