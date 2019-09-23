@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
 import styled from 'styled-components';
+
+import Header from './Header';
 import './Login.css';
 
 const Login = (props) => {
@@ -9,15 +11,6 @@ const Login = (props) => {
   const handleChange = e => {
     setCredentials({...credentials, [e.target.name]: e.target.value});
   };
-
-  const Header = styled.div`
-    color: white;
-    font-size: 3rem;
-    width: 100%;
-    height: 10vh;
-    padding: 2.5% 50px;
-    background-image: linear-gradient(to right, #565f64, #eeeff3);
-  `;
 
   const Login = styled.div`
     position: absolute;
@@ -68,7 +61,7 @@ const Login = (props) => {
 
   return (
     <>
-      <Header>Wanderlust</Header>
+      <Header />
       <Login>
         <Form>
           <Input
