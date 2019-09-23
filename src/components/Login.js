@@ -62,25 +62,25 @@ const Login = (props) => {
   return (
     <>
       <Header />
-      <Login>
-        <Form>
-          <Input
+      <div className="login">
+        <form className="form">
+          <input className="input"
           type="text"
           name="username"
           placeholder = "User Name"
           value={credentials.username}
           onChange={handleChange}
           />
-          <Input
+          <input className="input"
           type="password"
           name="password"
           placeholder = "Password"
           value={credentials.password}
           onChange={handleChange}
           />
-          <Button>Log in</Button>
-        </Form>
-      </Login>
+          <button className="btn">Log in</button>
+        </form>
+      </div>
     </>
   );
 };
