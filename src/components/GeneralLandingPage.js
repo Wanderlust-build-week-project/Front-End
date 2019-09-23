@@ -20,13 +20,14 @@ const Button = styled.button`
   padding: 5px 40px;
   margin: 10px auto;
   border-radius: 10px;
+  cursor: pointer;
   box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
     0 2px 4px rgba(0, 0, 0, 0.24);
 `;
 
 const GeneralLanding = styled.div`
   border: 2px solid yellow;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -37,6 +38,7 @@ const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
 
   const [experiences, setExperiences] = useState();
+
   const routeToUserBrowsing = event => {
     event.preventDefault();
     props.history.push("/user-browsing-page");
@@ -47,10 +49,10 @@ const GeneralLandingPage = props => {
   };
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
-    console.log("useEffect");
     setExperiences(data);
-  }, []);
-  console.log(experiences);
+  }, [experiences]);
+
+  console.log("experiences data", experiences);
   /* ======= RETURN =========  */
   return (
     <>
@@ -71,11 +73,7 @@ const GeneralLandingPage = props => {
           <div className="find-experience">
             <h2>Featured Experiences:</h2>
             <div>
-              <ul>
-                <li>Expericne One</li>
-                <li>Experience Two</li>
-                <li>Experience Three</li>
-              </ul>
+              <FeaturedTrips />
             </div>
             <Button onClick={routeToUserBrowsing}>Serch for more trips</Button>
           </div>
@@ -90,3 +88,17 @@ const GeneralLandingPage = props => {
 };
 
 export default GeneralLandingPage;
+
+function FeaturedTrips() {
+  return (
+    <div className="featured-trips-wrapper">
+      {data.map(trip => (
+        <div className="trip-card" key={trip.id}>
+          <h3>Adventure: {trip.name}</h3>
+          <img src={trip.image_url} alt="" />
+          <button className="learn-more">Learn More</button>
+        </div>
+      ))}
+    </div>
+  );
+}
