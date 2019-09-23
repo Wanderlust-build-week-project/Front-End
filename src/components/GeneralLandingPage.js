@@ -3,7 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import "./GeneralLandingPage.css";
 import { Link } from "react-router-dom";
-
+import data from "../images/gerneral-landing-images/dummyData";
+/* ===== styled components ======= */
 const Header = styled.div`
   color: white;
   font-size: 3rem;
@@ -31,9 +32,11 @@ const GeneralLanding = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
+/* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
-  const [experiences, setExperiences] = useState([]);
+  /* ====== VARS, STATE, FUNCS ========== */
+
+  const [experiences, setExperiences] = useState();
   const routeToUserBrowsing = event => {
     event.preventDefault();
     props.history.push("/user-browsing-page");
@@ -44,22 +47,26 @@ const GeneralLandingPage = props => {
   };
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
-    axios.get(`https://rickandmortyapi.com/api/character/`).then(response => {
-      console.log("response", response.data.results);
-    });
+    console.log("useEffect");
+    setExperiences(data);
   }, []);
-
+  console.log(experiences);
+  /* ======= RETURN =========  */
   return (
     <>
       <Header>
         Wanderlust
         <nav className="gerneral-header-nav">
-          <Link to="/creator-update-experiance-form">Trip History</Link>
-          <Link to="/creator-viewing-page">Created Trips</Link>
+          <Link className="header-link" to="/creator-update-experiance-form">
+            My Trip History
+          </Link>
+          <Link className="header-link" to="/creator-viewing-page">
+            My Created Trips
+          </Link>
         </nav>
       </Header>
       <GeneralLanding>
-        <h1>HI FROM GENERAL LANDING PAGE</h1>
+        <h1>Find a trip or create your own</h1>
         <div className="create-or-find">
           <div className="find-experience">
             <h2>Featured Experiences:</h2>
