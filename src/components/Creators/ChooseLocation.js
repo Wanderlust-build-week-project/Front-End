@@ -89,6 +89,11 @@ const ChooseLocation = (props) => {
                 <Title>Wanderlust</Title>
                 <nav className="gerneral-header-nav">
                 <NaviLink>
+                    <Link className="header-link" to="/creator-landing-page">
+                    Home
+                    </Link>
+                </NaviLink>    
+                <NaviLink>
                     <Link className="header-link" to="/creator-viewing-page">
                     My Created Trips
                     </Link>
