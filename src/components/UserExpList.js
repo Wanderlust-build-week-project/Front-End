@@ -3,6 +3,9 @@ import UserExpCard from "./UserExpCard"
 
 const UserExpList = () => {
     const [exp, setExp] = useState([])
+    useEffect(() => {
+        
+    })
     return (
         <div>
             <UserExpCard />

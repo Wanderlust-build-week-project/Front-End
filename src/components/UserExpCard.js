@@ -3,10 +3,12 @@ import {
     Card, CardImg, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
+import Header from "./"
 
 const UserExpCard = (props) => {
     return (
         <div>
+            <Header />
             <Row>
                 <Col sm="6">
                     <Card>
@@ -20,6 +22,7 @@ const UserExpCard = (props) => {
                             <CardLink href="#">Register</CardLink>
                             <CardLink href="#">Rate</CardLink>
                         </CardBody>
+                
                     </Card>
                 </Col>
             </Row>
