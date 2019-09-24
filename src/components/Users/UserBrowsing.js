@@ -44,7 +44,7 @@ const UserBrowsing = () => {
       ))}
       </Gallery>
       <div>
-        <button onClick={() => props.history.push('/user-browsing-page')}>Check out All Experinces</button>
+        <button>Check out All Experinces</button>
 {browser.map(browse => {
     <UserBrowsingCards key={browse.id}
       title={browse.title}

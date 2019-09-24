@@ -19,8 +19,7 @@ const UserExpList = () => {
          title={exp.title}
          desc={exp.description}
          date={exp.date}
-         hours={exp.hours}
-         loc={exp.locaton}
+         img={exp.image}
          
          />
        })}
