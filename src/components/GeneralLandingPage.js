@@ -5,6 +5,7 @@ import "./GeneralLandingPage.css";
 import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
+
 /* ===== styled components ======= */
 const Header = styled.div`
   background-color: white;
