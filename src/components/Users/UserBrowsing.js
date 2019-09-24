@@ -25,8 +25,7 @@ const UserBrowsing = () => {
     axios
       .get(`https://wanderlustbw.herokuapp.com/exp/experience/${index}`)
       .then(res => {
-        const exp = res
-        setBrowser(...exp, res)
+        setBrowser(res)
         console.log(res)
       })
       .catch(err => console.log('Loading Error Experinces', err))
@@ -44,12 +43,17 @@ const UserBrowsing = () => {
         <GalleryImage objectFit="contain" src={image} />
       ))}
       </Gallery>
-
       <div>
-       {/* {map.browser(browse => {
-         <UserBrowsingCards />
-       })} */}
-        {/* ^ to map over after error clears */}
+        <button>Check out All Experinces</button>
+        {browser.map(browse => {
+          return (
+            <UserBrowsingCards key={browse.id}
+              title={browse.title}
+              desc={browse.description}
+              date={browse.date}
+              hours={browse.hours}
+            />)
+        })}
       </div>
     </>
   )

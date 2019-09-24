@@ -2,19 +2,24 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import "./GeneralLandingPage.css";
-import { Link, Route } from "react-router-dom";
-import UserBrowsingCards from "./Users/UserBrowsingCards"
+import { NavLink, Link, Route } from "react-router-dom";
+import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 /* ===== styled components ======= */
 const Header = styled.div`
-  color: white;
-  font-size: 3rem;
-  width: 100%;
+  background-color: white;
   display: flex;
   justify-content: space-between;
-  height: 10vh;
-  padding: 2.5% 50px;
-  background-image: linear-gradient(to right, #565f64, #eeeff3);
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  z-index: 2;
+  top: 0;
+  padding: 1vh 5vw;
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
 `;
 
 const Button = styled.button`
@@ -27,26 +32,33 @@ const Button = styled.button`
 `;
 
 const GeneralLanding = styled.div`
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  height: fit-content;
+  padding: 30px;
+  top: 15vh;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+`;
+
+const NaviLink = styled.span`
+  text-decoration: none;
+  margin-left: 40px;
 `;
 /* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
 
   const [experiences, setExperiences] = useState();
-
-  const routeToUserBrowsing = event => {
-    event.preventDefault();
-    props.history.push("/user-browsing-page");
-  };
-  const routeToCreateExp = event => {
-    event.preventDefault();
-    props.history.push("/creator-create-experiance-form");
+  const handleLogout = () => {
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    return "";
   };
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
@@ -58,31 +70,49 @@ const GeneralLandingPage = props => {
   return (
     <>
       <Header>
-        Wanderlust
+        <Title>Wanderlust</Title>
         <nav className="gerneral-header-nav">
-          <Link className="header-link" to="/creator-update-experiance-form">
-            My Trip History
-          </Link>
-          <Link className="header-link" to="/creator-viewing-page">
-            My Created Trips
-          </Link>
-          <Link className="header-link" to="/experiences">Experiences</Link>
-          <Route path="/experiences" component={UserBrowsingCards}/>
+          <NaviLink>
+            <Link className="header-link" to="/user-browsing-page">
+              My Trip History
+            </Link>
+          </NaviLink>
+
+          <NaviLink>
+            <Link className="header-link" to="/experiences">
+              Experiences
+            </Link>
+          </NaviLink>
+
+          <NaviLink onClick={handleLogout}>
+            <Link to="/">Logout</Link>
+          </NaviLink>
+          <Route path="/experiences" component={UserBrowsingCards} />
         </nav>
       </Header>
       <GeneralLanding>
-        <h1>Find a trip or create your own</h1>
         <div className="create-or-find">
-          <div className="find-experience">
-            <h2>Featured Experiences:</h2>
+          <div className="featured-experiences">
+            <h2>Todya's Featured Experiences:</h2>
             <div>
               <FeaturedTrips />
             </div>
-            <Button onClick={() => props.history.push('/user-browsing-page')}>Serch for more trips</Button>
           </div>
-          <div className="create-own-experience">
-            <h2>Create Your Own Experiecne</h2>
-            <Button onClick={() => props.history.push('/creator-viewing-page')}>Create</Button>
+          <div className="create-or-find-btns">
+            <div className="search-trips-btn">
+              <h3>Check out more awesome adventures!</h3>
+              <Button onClick={() => props.history.push("/user-browsing-page")}>
+                Search for more trips
+              </Button>
+            </div>
+            <div className="become-a-creator">
+              <h3>Wan't to host your own tour? </h3>
+              <Button
+                onClick={() => props.history.push("/creator-viewing-page")}
+              >
+                Become a Trip Creator
+              </Button>
+            </div>
           </div>
         </div>
       </GeneralLanding>
