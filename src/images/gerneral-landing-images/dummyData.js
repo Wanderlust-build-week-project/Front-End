@@ -2,7 +2,7 @@ export default [
   {
     id: 1,
     description: null,
-    name: "Summer hike",
+    name: "Northwest Canopies",
     duration: 1,
     date: null,
     completed: false,
@@ -13,7 +13,7 @@ export default [
   {
     id: 2,
     description: null,
-    name: "Summer hike",
+    name: "West Coast Adventure",
     duration: 1,
     date: null,
     completed: false,
@@ -24,7 +24,7 @@ export default [
   {
     id: 3,
     description: null,
-    name: "Summer hike",
+    name: "East Coast Adventure",
     duration: 1,
     date: null,
     completed: false,
@@ -35,7 +35,7 @@ export default [
   {
     id: 4,
     description: null,
-    name: "Summer hike",
+    name: "Alaskan Wilderness",
     duration: 1,
     date: null,
     completed: false,
