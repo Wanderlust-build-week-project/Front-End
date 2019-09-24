@@ -45,14 +45,15 @@ const UserBrowsing = () => {
       </Gallery>
       <div>
         <button>Check out All Experinces</button>
-{browser.map(browse => {
-    <UserBrowsingCards key={browse.id}
-      title={browse.title}
-      desc={browse.description}
-      date={browse.date}
-      hours={browse.hours}
-      loc={browse.locaton} />
-  })}
+        {browser.map(browse => {
+          return (
+            <UserBrowsingCards key={browse.id}
+              title={browse.title}
+              desc={browse.description}
+              date={browse.date}
+              hours={browse.hours}
+            />)
+        })}
       </div>
     </>
   )
