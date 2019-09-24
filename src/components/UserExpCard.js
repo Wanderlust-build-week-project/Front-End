@@ -3,7 +3,7 @@ import {
     Card, CardImg, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
-import Header from "./Header";
+import Header from "./"
 
 const UserExpCard = (props) => {
     return (

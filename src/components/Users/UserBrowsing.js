@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 
-const UserBrowsing = (props) => {
+const UserBrowsing = () => {
+  const [browse, setBrowse] = useState([])
+  const [id, setId] = useState({})
+
+  useEffect
   return (
     <div>
       
