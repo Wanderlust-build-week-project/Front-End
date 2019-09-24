@@ -96,8 +96,9 @@ const CreatorCreateExperienceForm = (props) => {
                 onChange={handleChange}
               />
             </div>
-            <div className="column">      
-              {place.place}
+            <div className="column location">     
+              <label className="label" for="duration">Location: </label> 
+              <Link to="/choose-location">{place.place}</Link>
             </div>
           </div>
           <span className="button-span">
