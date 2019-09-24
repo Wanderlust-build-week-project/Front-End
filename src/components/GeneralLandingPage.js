@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import "./GeneralLandingPage.css";
-import { Link } from "react-router-dom";
+import { NavLink, Link, Route } from "react-router-dom";
+import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 /* ===== styled components ======= */
 const Header = styled.div`
@@ -33,46 +34,67 @@ const GeneralLanding = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+const NaviLink = styled.span`
+  text-decoration: none;
+  margin-left: 40px;
+`;
 /* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
 
   const [experiences, setExperiences] = useState();
-
-  const routeToUserBrowsing = event => {
-    event.preventDefault();
-    props.history.push("/user-browsing-page");
-  };
-  const routeToCreateExp = event => {
-    event.preventDefault();
-    props.history.push("/creator-create-experience-form");
+  const handleLogout = () => {
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    return "";
   };
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
     setExperiences(data);
   }, [experiences]);
 
-  console.log("experiences data", experiences);
+  // console.log("experiences data", experiences);
   /* ======= RETURN =========  */
   return (
     <>
       <Header>
         Wanderlust
         <nav className="gerneral-header-nav">
-          <Link className="header-link" to="/user-browsing-page">
-            My Trip History
-          </Link>
-          <Link className="header-link" to="/creator-viewing-page">
-            My Created Trips
-          </Link>
+          <NaviLink>
+            {" "}
+            <Link className="header-link" to="/user-browsing-page">
+              My Trip History
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/creator-viewing-page">
+              My Created Trips
+            </Link>
+          </NaviLink>
+
+          <NaviLink>
+            <Link className="header-link" to="/experiences">
+              Experiences
+            </Link>
+          </NaviLink>
+
+          <NaviLink onClick={handleLogout}>
+            <Link to="/">Logout</Link>
+          </NaviLink>
+          <Route path="/experiences" component={UserBrowsingCards} />
         </nav>
       </Header>
       <GeneralLanding>
         <h1>Find a trip or create your own</h1>
         <div className="create-or-find">
           <div className="create-or-find-btns">
-            <Button onClick={routeToCreateExp}>Create</Button>
-            <Button onClick={routeToUserBrowsing}>Serch for more trips</Button>
+            <Button onClick={() => props.history.push("/creator-viewing-page")}>
+              Create
+            </Button>
+            <Button onClick={() => props.history.push("/user-browsing-page")}>
+              Serch for more trips
+            </Button>
           </div>
 
           <div className="featured-experiences">

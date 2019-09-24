@@ -1,0 +1,141 @@
+/* VIEWING PAGE STYLING */
+.titlebar {
+background-color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 50%;
+max-width: 750px;
+margin: 10% auto 5%;
+padding: 30px 40px;
+border-radius: 10px;
+box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+.title {
+font-size: 2rem;
+font-weight: strong;
+}
+
+.create-new {
+padding: 5px 15px;
+margin: 10px auto;
+border-radius: 10px;
+box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+transition: all .2s ease-in-out;
+}
+
+.create-new:hover {
+transform: scale(1.05);
+}
+
+
+/* CARD STYLING */
+.card {
+background-color: white;
+width: 50%;
+max-width: 750px;
+margin: 5% auto;
+padding: 30px 40px;
+border-radius: 10px;
+box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+.row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 10px auto;
+}
+
+.title {
+font-size: 2rem;
+font-weight: strong;
+}
+
+.location {
+font-size: 1rem;
+font-weight: em;
+}
+
+.icons {
+display: flex;
+flex-direction: row;
+font-size: 1.5rem;
+}
+
+.icon-btn {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 30px;
+height: 30px;
+margin: 0 5px;
+border: 1px solid silver;
+border-radius: 5px;
+box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+transition: all .2s ease-in-out;
+}
+
+.icon-btn:hover {
+transform: scale(1.05);
+border: 1px solid grey;
+}
+
+.icon-btn:active {
+transform: scale(1);
+}
+
+/* CREATOR CREATE EXPERIENCE STYLES */
+
+.new-experience {
+    background-color: white;
+    width: 50%;
+    max-width: 750px;
+    margin: 10% auto;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+  }
+  .new-experience-form {
+    display:flex;
+    flex-direction:column;
+  }
+  .label {
+    margin: 8px 0 3px;
+  }
+  .new-experience.input {
+    padding: 5px 10px;
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+  }
+  .description {
+    height: 150px;
+    padding: 5px 10px;
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+  }
+  .date-dur-loc {
+    display:flex;
+    justify-content: space-around;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+  .small-input {
+    width: 70%;
+    padding: 0px 10px;
+    margin: 0 20px;
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+  }
+  .button-span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .create-btn {
+    width: 100px;
+    padding: 5px 20px;
+    margin: 30px 10px;
+    border-radius: 10px;
+  }

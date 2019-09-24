@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Header() {
@@ -27,6 +27,12 @@ export default function Header() {
     margin-left: 40px;
     `;
 
+    const handleLogout = () => {
+        localStorage.removeItem('userID');
+        localStorage.removeItem('token');
+        return '';
+    };
+
     return (
         <>
             <Bar>
@@ -34,7 +40,7 @@ export default function Header() {
                 <Nav>
                     <NaviLink><Link to="/">Home</Link></NaviLink>
                     <NaviLink><Link to="/">Link3</Link></NaviLink>
-                    <NaviLink><Link to="/">Link2</Link></NaviLink>
+                    <NaviLink onClick = {handleLogout}><Link to="/">Logout</Link></NaviLink>
                 </Nav>
             </Bar>
         </>

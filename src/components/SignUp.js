@@ -30,6 +30,7 @@ const SignUp = (props) => {
         //   localStorage.setItem('token', res.data.payload);
           props.history.push('/login');
           console.log(res)
+          console.log('Guest Created')
         })
         .catch(err => console.log(err));
     } else {
@@ -45,6 +46,7 @@ const SignUp = (props) => {
         //   localStorage.setItem('token', res.data.payload);
           props.history.push('/login');
           console.log(res)
+          console.log('Organizer Created')
         })
         .catch(err => console.log(err));
     } else {
@@ -80,7 +82,7 @@ const SignUp = (props) => {
             onChange={handleChange}
           />
           <div id = "checkIfOrganizerSignUp" className = "are-you">
-            <label for = "creator">Are you an Organizer?</label>
+            <label htmlFor = "creator">Are you an Organizer?</label>
             <input type = "checkbox" id = "creator" name = "creatorCheckbox" />
           </div>
           <p className="already">Already Have an account?</p>

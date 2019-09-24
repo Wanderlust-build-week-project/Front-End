@@ -10,13 +10,13 @@
   height: fit-content;
   display: flex;
   justify-content: space-between;
-  width: 250px;
+  width: fit-content;
   /* border: 2px solid blue; */
 }
 
-.header-link {
+/* .header-link {
   border: 1px solid black;
-}
+} */
 
 .create-or-find {
   display: flex;

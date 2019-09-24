@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // import PrivateRoute from './components/PrivateRoute';
@@ -18,11 +18,8 @@ function App() {
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
         {/* <PrivateRoute exact path="/general-landing-page" component={GeneralLandingPage}/> */}
-        <Route
-          exact
-          path="/general-landing-page"
-          component={GeneralLandingPage}
-        />
+        <Route path="/general-landing-page" component={GeneralLandingPage} />
+
         <Route exact path="/user-browsing-page" component={UserBrowsingPage} />
         <Route
           exact
@@ -30,12 +27,10 @@ function App() {
           component={CreatorViewingPage}
         />
         <Route
-          exact
           path="/creator-create-experience-form"
           component={CreatorCreateExperienceForm}
         />
         <Route
-          exact
           path="/creator-update-experience-form"
           component={CreatorUpdateExperienceForm}
         />
