@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import {Link} from 'react-router-dom';
 
+import Header from '../Header';
+import './CVP.css';
+
 
 const ChooseLocation = (props) => {
     const [locations, setLocations] = useState([])
@@ -54,21 +57,33 @@ const ChooseLocation = (props) => {
 
       return (
           <>
-            {locations.map(location =>
-                <Link to = {'/creator-create-experience-form'} onClick = {() => localStorage.setItem('location', location.id)} >{location.location}</Link>
-                )}
-
+            <Header />
+            <div className="loc-card">
+                <p className="title">Choose A Location</p>
+                <div className="loc-list">
+                    <ul className="loc-ul">
+                    {
+                    locations.map(location =>
+                        <li>
+                        <Link to = {'/creator-create-experience-form'} onClick = {() => localStorage.setItem('location', location.id)} className="loc-link" > {location.location}</Link>
+                        </li>
+                    )}
+                    </ul>
+                </div>
+            </div>
+            <div className="card">
+                <p className="title-small">Don't see your location?</p>
                 <form onSubmit = {addLocation}>
-                <label className="Enter Location" for="name">Enter Location:</label>
-                <input
+                <input className="loc-input"
                     type="text"
                     name="location"
                     placeholder="Location i.e. New York"
                     value={newLocation.location}
                     onChange={handleChange}
                 />
-                <button type = 'submit'>Add location</button>
+                <button className="loc-btn" type = 'submit'>Add location</button>
                 </form>
+            </div>
           </>
       )
   }
