@@ -52,7 +52,7 @@ const GeneralLandingPage = props => {
     setExperiences(data);
   }, [experiences]);
 
-  console.log("experiences data", experiences);
+  // console.log("experiences data", experiences);
   /* ======= RETURN =========  */
   return (
     <>

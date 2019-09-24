@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Header from './Header';
 import './Login.css';
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({username: "", password: ""});
@@ -27,7 +28,12 @@ const Login = (props) => {
       .then(res => {
         localStorage.setItem('token', res.data.token);
         props.history.push("/general-landing-page");
-        // console.log('this is the res', res.data.token)
+        axiosWithAuth()
+        .get(`https://wanderlustbw.herokuapp.com/organizers/username/${credentials.username}`)
+        .then(res2 => {
+          console.log("this is the second responce", res2)
+          props.setUserID(res2.id)
+        })
       })
       .catch(err => console.log(err));
   };
@@ -64,7 +70,7 @@ const Login = (props) => {
             onChange={handleChange}
           />
           <div id = "checkIfOrganizerLogin" className = "are-you">
-            <label for = "creator">Are you an Organizer?</label>
+            <label htmlFor = "creator">Are you an Organizer?</label>
             <input type = "checkbox" id = "creator" name = "creatorCheckbox" />
           </div>
           <button className="btn">Log in</button>
