@@ -17,11 +17,14 @@ const Login = props => {
 
   const submitLogin = e => {
     e.preventDefault();
-    var cont = document.getElementById("checkIfOrganizerLogin").children;
+    var cont = document.getElementById("creator");
+    // console.log(cont)
     if (cont.checked) {
       loginOrganizer();
+      // console.log(`organizer logged in`)
     } else {
       loginUser();
+      // console.log(`guest logged in`)
     }
   };
 
@@ -37,7 +40,7 @@ const Login = props => {
           .then(res2 => {
             console.log("this is the second responce guest", res2.data.id);
             localStorage.setItem("userID", res2.data.id);
-            props.history.push(`/general-landing-page/user`);
+            props.history.push(`/general-landing-page`);
           });
       })
       .catch(err => console.log(err));
@@ -59,7 +62,7 @@ const Login = props => {
           .then(res2 => {
             console.log("this is the second responce organizer", res2.data.id);
             localStorage.setItem("userID", res2.data.id);
-            props.history.push(`/general-landing-page/creator`);
+            props.history.push(`/general-landing-page`);
           });
       })
       .catch(err => console.log(err));
