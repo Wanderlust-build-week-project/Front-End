@@ -46,10 +46,8 @@ const UserBrowsing = () => {
 
       <div>
         
-       {/* {browser.map(browse => {
-         <UserBrowsingCards />
-       })} */}
-        {/* ^ to map over after error clears */}
+
+<button>Check out All Experinces</button>
       </div>
     </>
   )
