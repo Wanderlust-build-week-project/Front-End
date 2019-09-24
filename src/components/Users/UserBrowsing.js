@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import UserBrowsingCards from './UserBrowsingCards'
-import { Gallery, GalleryImage } from 'react-gesture-gallery'
+import UserBrowsingCards from './UserBrowsingCards';
+import { Gallery, GalleryImage } from 'react-gesture-gallery';
 
 const UserBrowsing = () => {
   const INITIAL_INDEX = 0
@@ -46,9 +46,9 @@ const UserBrowsing = () => {
       </Gallery>
 
       <div>
-       {map.browser(browse => {
+       {/* {map.browser(browse => {
          <UserBrowsingCards />
-       })}
+       })} */}
         {/* ^ to map over after error clears */}
       </div>
     </>
