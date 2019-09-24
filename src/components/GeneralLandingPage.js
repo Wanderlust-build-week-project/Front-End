@@ -52,7 +52,7 @@ const GeneralLandingPage = props => {
     setExperiences(data);
   }, [experiences]);
 
-  console.log("experiences data", experiences);
+  // console.log("experiences data", experiences);
   /* ======= RETURN =========  */
   return (
     <>
@@ -75,11 +75,11 @@ const GeneralLandingPage = props => {
             <div>
               <FeaturedTrips />
             </div>
-            <Button onClick={routeToUserBrowsing}>Serch for more trips</Button>
+            <Button onClick={() => props.history.push('/user-browsing-page')}>Serch for more trips</Button>
           </div>
           <div className="create-own-experience">
             <h2>Create Your Own Experiecne</h2>
-            <Button onClick={routeToCreateExp}>Create</Button>
+            <Button onClick={() => props.history.push('/creator-viewing-page')}>Create</Button>
           </div>
         </div>
       </GeneralLanding>
