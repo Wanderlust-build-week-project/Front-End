@@ -13,13 +13,14 @@ const UserBrowsingCards = (props) => {
              <Row>
                 <Col sm="6">
                     <Card>
-                        <CardBody>
-                            <CardTitle>Exp Title</CardTitle>
-                            <CardSubtitle>Mini Dsc.</CardSubtitle>
-                            <CardText>Location</CardText>
-                            <CardText>Duration</CardText>
+                        <CardBody {...props.key}>
+                            <CardTitle>{props.title}</CardTitle>
+                            <CardSubtitle>{props.desc}</CardSubtitle>
+                            <CardText>{props.loc}</CardText>
+                            <CardText>{props.hours}</CardText>
+                            <CardText>{props.date}</CardText>
                         </CardBody>
-                        <img />
+                        <CardImg src={props.img} alt={props.title}/>
                 
                     </Card>
                 </Col>
