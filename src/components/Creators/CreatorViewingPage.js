@@ -23,13 +23,38 @@ const CreatorViewingPage = (props) => {
     axiosWithAuth()
     .get(`https://wanderlustbw.herokuapp.com/exp/organizer/${localStorage.getItem('userID')}`)
     .then(response => {
-      console.log(`this should be experiances`, response)
+      console.log(`this should be experiences`, response)
       setExperiences(response.data)
     })
     .catch(error => {
       console.log(error)
     });
-  }, [props.userID])
+  }, [])
+
+  const reRender = () => {
+  axiosWithAuth()
+    .get(`https://wanderlustbw.herokuapp.com/exp/organizer/${localStorage.getItem('userID')}`)
+    .then(response => {
+      console.log(`this should be experiences`, response)
+      setExperiences(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }
+
+  const deleteExperience = (id) => {
+    console.log(id)
+    axiosWithAuth()
+    .delete(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
+  .then(res => {
+    reRender()
+    console.log(res);
+    // setState(res.data)
+    // console.log(this.props.history.push(`/`))
+    })
+  .catch(err => console.log(err.response));
+  }
 
   return (
     <>
@@ -50,6 +75,7 @@ const CreatorViewingPage = (props) => {
                 duration={experience.duration}
                 location_id={experience.location_id}
                 completed={experience.completed}
+                deleteExperience = {deleteExperience}
                 />
               )
           })
