@@ -19,44 +19,23 @@
 } */
 
 .create-or-find {
+  /* border: 3px solid green; */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .featured-trips-wrapper {
+  /* border: 2px solid pink; */
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
-.create-or-find-btns {
-  /* border: 2px solid purple; */
-  height: fit-content;
+.create-btn-container {
+  /* border: 2px solid yellow; */
   width: fit-content;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-
-  margin-top: 2vh;
-}
-
-.search-trips-btn {
-  /* border: 2px solid green; */
-
-  color: white;
-  height: 15vh;
-  margin: 30px;
-}
-
-.become-a-creator {
-  /* border: 2px solid blue; */
-
-  color: white;
-  height: 15vh;
-  margin: 30px;
+  margin: 20px auto;
 }
 
 .featured-experiences {
@@ -90,6 +69,7 @@
 }
 
 .create-own-experience {
+  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
   margin: 20px;

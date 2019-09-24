@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // import PrivateRoute from './components/PrivateRoute';
 import GeneralLandingPage from "./components/GeneralLandingPage";
+import CreatorLandingPage from "./components/CreatorLandingPage";
 import UserBrowsingPage from "./components/Users/UserBrowsing";
 import CreatorViewingPage from "./components/Creators/CreatorViewingPage";
 import CreatorCreateExperienceForm from "./components/Creators/CreatorCreateExperience";
@@ -19,7 +20,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         {/* <PrivateRoute exact path="/general-landing-page" component={GeneralLandingPage}/> */}
         <Route path="/general-landing-page" component={GeneralLandingPage} />
-
+        <Route path="/creator-landing-page" component={CreatorLandingPage} />
         <Route exact path="/user-browsing-page" component={UserBrowsingPage} />
         <Route
           exact

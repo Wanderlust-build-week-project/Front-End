@@ -62,7 +62,7 @@ const Login = props => {
           .then(res2 => {
             console.log("this is the second responce organizer", res2.data.id);
             localStorage.setItem("userID", res2.data.id);
-            props.history.push(`/general-landing-page`);
+            props.history.push(`/creator-landing-page`);
           });
       })
       .catch(err => console.log(err));

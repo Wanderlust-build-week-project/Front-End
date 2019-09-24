@@ -7,14 +7,19 @@ import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 /* ===== styled components ======= */
 const Header = styled.div`
-  color: white;
-  font-size: 3rem;
-  width: 100%;
+  background-color: white;
   display: flex;
   justify-content: space-between;
-  height: 10vh;
-  padding: 2.5% 50px;
-  background-image: linear-gradient(to right, #565f64, #eeeff3);
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  z-index: 2;
+  top: 0;
+  padding: 1vh 5vw;
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
 `;
 
 const Button = styled.button`
@@ -33,6 +38,12 @@ const GeneralLanding = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  height: fit-content;
+  padding: 30px;
+  top: 15vh;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
 `;
 
 const NaviLink = styled.span`
@@ -59,17 +70,11 @@ const GeneralLandingPage = props => {
   return (
     <>
       <Header>
-        Wanderlust
+        <Title>Wanderlust</Title>
         <nav className="gerneral-header-nav">
           <NaviLink>
-            {" "}
             <Link className="header-link" to="/user-browsing-page">
               My Trip History
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/creator-viewing-page">
-              My Created Trips
             </Link>
           </NaviLink>
 
@@ -86,21 +91,27 @@ const GeneralLandingPage = props => {
         </nav>
       </Header>
       <GeneralLanding>
-        <h1>Find a trip or create your own</h1>
         <div className="create-or-find">
-          <div className="create-or-find-btns">
-            <Button onClick={() => props.history.push("/creator-viewing-page")}>
-              Create
-            </Button>
-            <Button onClick={() => props.history.push("/user-browsing-page")}>
-              Serch for more trips
-            </Button>
-          </div>
-
           <div className="featured-experiences">
-            <h2>Featured Experiences:</h2>
+            <h2>Todya's Featured Experiences:</h2>
             <div>
               <FeaturedTrips />
+            </div>
+          </div>
+          <div className="create-or-find-btns">
+            <div className="search-trips-btn">
+              <h3>Check out more awesome adventures!</h3>
+              <Button onClick={() => props.history.push("/user-browsing-page")}>
+                Search for more trips
+              </Button>
+            </div>
+            <div className="become-a-creator">
+              <h3>Wan't to host your own tour? </h3>
+              <Button
+                onClick={() => props.history.push("/creator-viewing-page")}
+              >
+                Become a Trip Creator
+              </Button>
             </div>
           </div>
         </div>
