@@ -21,10 +21,10 @@ const CreatorViewingPage = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`https://wanderlustbw.herokuapp.com/experiences/organizer/${localStorage.getItem('userID')}`)
+    .get(`https://wanderlustbw.herokuapp.com/exp/organizer/${localStorage.getItem('userID')}`)
     .then(response => {
-      console.log(response)
-      setExperiences(response)
+      console.log(`this should be experiances`, response)
+      setExperiences(response.data)
     })
     .catch(error => {
       console.log(error)

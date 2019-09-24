@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 
 import Header from '../Header';
 import './CVP.css';
@@ -18,11 +19,24 @@ const CreatorCreateExperienceForm = (props) => {
       name: "",
       description: "",
       date: "",
-      duration: 0,
-      location_id: 0,
+      duration: "",
+      organizer_id: localStorage.getItem('userID'),
+      location_id: "",
       completed: false
     }
   );
+
+  const submitNewExperience = event => {
+    event.preventDefault();
+    console.log(`this is experiance`, experience)
+    axiosWithAuth()
+      .post('https://wanderlustbw.herokuapp.com/exp', experience)
+      .then(res => {
+        console.log(res)
+        props.history.push(`/creator-viewing-page`)
+      })
+      .catch(err => console.log(err));
+  };
 
   const handleChange = e => {
     setExperience({...experience, [e.target.name]: e.target.value});
@@ -33,7 +47,7 @@ const CreatorCreateExperienceForm = (props) => {
       <Header/>
       <div className="new-experience">
         <h2>Create a New Experience</h2>
-        <form className="new-experience-form">
+        <form className="new-experience-form" onSubmit = {submitNewExperience}>
           <label className="label" for="name">Title:</label>
           <input className="new-experience-input"
             type="text"
@@ -68,7 +82,7 @@ const CreatorCreateExperienceForm = (props) => {
               <label className="label" for="location">Location: </label>
               <input className="small-input"
                 type="number"
-                name="location"
+                name="location_id"
                 value={experience.location_id}
                 onChange={handleChange}
               />
