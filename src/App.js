@@ -6,6 +6,7 @@ import GeneralLandingPage from "./components/GeneralLandingPage";
 import UserBrowsingPage from "./components/Users/UserBrowsing";
 import CreatorViewingPage from "./components/Creators/CreatorViewingPage";
 import CreatorCreateExperienceForm from "./components/Creators/CreatorCreateExperience";
+import CreatorUpdateExperienceForm from "./components/Creators/CeatorUpdateExperience";
 
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -36,6 +37,10 @@ function App() {
         <Route
           path="/creator-create-experience-form"
           component={CreatorCreateExperienceForm}
+        />
+         <Route
+          path="/creator-update-experience-form"
+          component={CreatorUpdateExperienceForm}
         />
       </div>
     </Router>

@@ -14,7 +14,7 @@ const CreatorUpdateExperienceForm = (props) => {
 
   const today = month + "-" + day + "-" + year;
 
-
+  const [test, setText] = useState()
   const [experience, setExperience] = useState(
     {
       name: "",
@@ -27,19 +27,36 @@ const CreatorUpdateExperienceForm = (props) => {
   );
 
   useEffect(() => {
+    var pathArray = window.location.pathname.split('/')
+    // console.log(pathArray)
+    var id = pathArray[2]
     axiosWithAuth()
-    .get(`https://wanderlustbw.herokuapp.com/experiences/${props.match.params.id}`)
+    .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
     .then(response => {
-      console.log(response)
-      setExperience(response)
+      console.log(`this is on the update page`, response)
+      setExperience(response.data)
     })
     .catch(error => {
       console.log(error)
     });
-  }, [props.match.params.id])
+  }, [test])
 
   const handleChange = e => {
     setExperience({...experience, [e.target.name]: e.target.value});
+  }
+
+  const handleUpdate = () => {
+  var pathArray = window.location.pathname.split('/')
+  // console.log(pathArray)
+  var id = pathArray[2]
+  axiosWithAuth()
+    .put(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`, experience)
+    .then(response => {
+      console.log(`component updated`, response)
+    })
+    .catch(error => {
+      console.log(error)
+    });
   }
 
   return (
@@ -47,7 +64,7 @@ const CreatorUpdateExperienceForm = (props) => {
       <Header/>
       <div className="new-experience">
         <h2>Update This Experience</h2>
-        <form className="new-experience-form">
+        <form className="new-experience-form" onSubmit = {handleUpdate}>
           <label className="label" for="name">Title:</label>
           <input className="new-experience-input"
             type="text"

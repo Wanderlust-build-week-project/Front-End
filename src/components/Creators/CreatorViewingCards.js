@@ -27,7 +27,7 @@ export default function(props) {
                 <span className="title">{props.name}</span>
                 <span className="location">{props.location}</span>
                 <span className="icons">
-                    <span><Link to={`/creator-create-experience-form/${props.id}`}><button className="icon-btn">&#9998;</button></Link></span>
+                    <span><Link to={`/creator-update-experience-form/${props.id}`}><button className="icon-btn">&#9998;</button></Link></span>
                     <span><button className="icon-btn" onClick = {() => {props.deleteExperience(props.id)}}>&#128465;</button></span>
                 </span>
             </div>
