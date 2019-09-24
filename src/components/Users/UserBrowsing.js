@@ -3,7 +3,7 @@ import axios from 'axios'
 import UserBrowsingCards from './UserBrowsingCards'
 
 const UserBrowsing = () => {
-  const [browse, setBrowse] = useState([{
+  const [browser, setBrowser] = useState([{
     id: 1,
     name: "Preview Experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -42,7 +42,16 @@ const UserBrowsing = () => {
   return (
     <div>
       <h2>Checking</h2>
-      <UserBrowsingCards />
+      <div>{browser.map(browse => {
+        return (
+          <UserBrowsingCards key={browse.id}
+          name={browse.name}
+          description={browse.desc}
+          date={browse.date}
+          duration={browse.dur}
+          location={browse.loc}/>
+        )
+      })</div>
     </div>
   )
 }
