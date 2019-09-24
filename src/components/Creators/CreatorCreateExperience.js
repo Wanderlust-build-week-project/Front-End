@@ -21,7 +21,7 @@ const CreatorCreateExperienceForm = (props) => {
       date: "",
       duration: "",
       organizer_id: localStorage.getItem('userID'),
-      location_id: "",
+      location_id: localStorage.getItem('location'),
       completed: false
     }
   );

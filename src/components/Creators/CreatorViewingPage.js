@@ -61,7 +61,7 @@ const CreatorViewingPage = (props) => {
       <Header />
       <div className="titlebar">
         <span className="title">Your Experiences</span>
-        <span><Link to="/creator-create-experience-form"><button className="create-new">Create New</button></Link></span>
+        <span><Link to="/choose-location"><button className="create-new">Create New</button></Link></span>
       </div>
         {
           experiences.map((experience) => {
