@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import "./GeneralLandingPage.css";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards"
 import data from "../images/gerneral-landing-images/dummyData";
 /* ===== styled components ======= */
@@ -66,7 +66,8 @@ const GeneralLandingPage = props => {
           <Link className="header-link" to="/creator-viewing-page">
             My Created Trips
           </Link>
-          <Link className="header-link" to="/UserBrowsingCards">Experiences</Link>
+          <Link className="header-link" to="/experiences">Experiences</Link>
+          <Route path="/experiences" component={UserBrowsingCards}/>
         </nav>
       </Header>
       <GeneralLanding>

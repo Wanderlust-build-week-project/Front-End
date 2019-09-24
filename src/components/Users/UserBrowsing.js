@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserBrowsing = () => {
+const UserBrowsing = (props) => {
   return (
     <div>
       

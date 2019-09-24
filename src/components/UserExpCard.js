@@ -3,10 +3,12 @@ import {
     Card, CardImg, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
+import Header from "./Header";
 
 const UserExpCard = (props) => {
     return (
         <div>
+            <Header />
             <Row>
                 <Col sm="6">
                     <Card>
