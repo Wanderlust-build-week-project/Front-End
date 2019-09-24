@@ -17,7 +17,12 @@ const UserExpCard = (props) => {
                             <CardSubtitle>Mini Dsc.</CardSubtitle>
                         </CardBody>
                         <img />
-    
+                        <CardBody>
+                            <CardText>Quick Blurb</CardText>
+                            <CardLink href="#">Register</CardLink>
+                            <CardLink href="#">Rate</CardLink>
+                        </CardBody>
+                
                     </Card>
                 </Col>
             </Row>
