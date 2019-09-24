@@ -20,7 +20,7 @@ const UserBrowsingCards = (props) => {
                             <CardText>{props.hours}</CardText>
                             <CardText>{props.date}</CardText>
                         </CardBody>
-                        <img />
+                        <CardImg src={props.img} alt={props.title}/>
                 
                     </Card>
                 </Col>

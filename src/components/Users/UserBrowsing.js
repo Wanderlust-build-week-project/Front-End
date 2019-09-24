@@ -43,11 +43,16 @@ const UserBrowsing = () => {
         <GalleryImage objectFit="contain" src={image} />
       ))}
       </Gallery>
-
       <div>
-        
-
-<button>Check out All Experinces</button>
+        <button onClick={() => props.history.push('/user-browsing-page')}>Check out All Experinces</button>
+{browser.map(browse => {
+    <UserBrowsingCards key={browse.id}
+      title={browse.title}
+      desc={browse.description}
+      date={browse.date}
+      hours={browse.hours}
+      loc={browse.locaton} />
+  })}
       </div>
     </>
   )
