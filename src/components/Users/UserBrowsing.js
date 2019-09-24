@@ -1,58 +1,55 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import UserBrowsingCards from './UserBrowsingCards'
+import { Gallery, GalleryImage } from 'react-gesture-gallery'
 
 const UserBrowsing = () => {
-  const [browser, setBrowser] = useState([{
-    id: 1,
-    name: "Preview Experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    date: "09/23/2019 1PM",
-    duration: 1,
-    location_id: 1,
-    completed: false
-  }, {
-    id: 2,
-    name: "Preview Experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    date: "09/23/2019 2PM",
-    duration: 1,
-    location_id: 1,
-    completed: false
-  }, {
-    id: 2,
-    name: "Preview Experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    date: "09/23/2019 3PM",
-    duration: 1,
-    location_id: 1,
-    completed: false
-  }]);
-  const [id, setId] = useState(1)
+  const INITIAL_INDEX = 0
+  const images = ["https://picsum.photos/id/1020/300/300", "https://picsum.photos/id/1001/300/300", "https://picsum.photos/id/1005/300/300", "https://picsum.photos/id/1023/300/300"]
+  const [browser, setBrowser] = useState([]);
+  const [index, setIndex] = useState(0)
 
-  // useEffect(() => {
-  //   axios
-  //   .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  //   .catch(err => console.log('Loading Error Experinces', err))
-  // }, [id])
+  useEffect(() => {
+    const interval = (() => {
+      if (index === images.length - 1) {
+        setIndex(INITIAL_INDEX)
+      } else {
+        setIndex(index + 1)
+      }
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [index])
+  //^ for gallery state
+
+  useEffect(() => {
+    axios
+      .get(`https://wanderlustbw.herokuapp.com/exp/experience/${index}`)
+      .then(res => {
+        const exp = res
+        setBrowser(...exp, res)
+        console.log(res)
+      })
+      .catch(err => console.log('Loading Error Experinces', err))
+  }, [index])
+  //^ for cards
 
   return (
-    <div>
-      <h2>Checking</h2>
-      <div>{browser.map(browse => {
-        return (
-          <UserBrowsingCards key={browse.id}
-          name={browse.name}
-          description={browse.desc}
-          date={browse.date}
-          duration={browse.dur}
-          location={browse.loc}/>
-        )
-      })</div>
-    </div>
+    <>
+    <Gallery
+    index={index}
+    onRequestChage={i => {
+      setIndex(i)
+    }} 
+    >{images.map(image => (
+      <GalleryImage objectFit="contain" src={image} />
+    ))} 
+    </Gallery>
+
+      <div>
+        <UserBrowsingCards />
+        {/* ^ to map over after error clears */}
+      </div>
+    </>
   )
 }
 
