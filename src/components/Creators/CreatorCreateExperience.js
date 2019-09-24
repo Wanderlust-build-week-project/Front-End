@@ -1,11 +1,40 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axiosWithAuth from '../../utils/axiosWithAuth';
+import styled from 'styled-components';
 
 import Header from '../Header';
 import './CVP.css';
 
 const CreatorCreateExperienceForm = (props) => {
+
+  const Header = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  z-index: 2;
+  top: 0;
+  padding: 1vh 5vw;
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
+`;
+
+const NaviLink = styled.span`
+  text-decoration: none;
+  margin-left: 40px;
+`;
+
+const handleLogout = () => {
+  localStorage.removeItem("userID");
+  localStorage.removeItem("token");
+  return "";
+};
+
 
   const dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1;
@@ -62,7 +91,31 @@ const CreatorCreateExperienceForm = (props) => {
 
   return (
     <>
-      <Header/>
+      <Header>
+        <Title>Wanderlust</Title>
+        <nav className="gerneral-header-nav">
+          <NaviLink>
+            <Link className="header-link" to="/creator-landing-page">
+              Home
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/creator-viewing-page">
+              My Created Trips
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/experiences">
+              Experiences
+            </Link>
+          </NaviLink>
+
+          <NaviLink onClick={handleLogout}>
+            <Link to="/">Logout</Link>
+          </NaviLink>
+        </nav>
+      </Header>
+
       <div className="new-experience">
         <h2>Create a New Experience</h2>
         <form className="new-experience-form" onSubmit = {submitNewExperience}>
@@ -96,8 +149,9 @@ const CreatorCreateExperienceForm = (props) => {
                 onChange={handleChange}
               />
             </div>
-            <div className="column">      
-              {place.place}
+            <div className="column location">     
+              <label className="label" for="duration">Location: </label> 
+              <Link to="/choose-location">{place.place}</Link>
             </div>
           </div>
           <span className="button-span">
