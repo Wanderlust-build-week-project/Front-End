@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
@@ -25,6 +25,21 @@ const CreatorCreateExperienceForm = (props) => {
       completed: false
     }
   );
+
+  const [location, setLocation] = useState();
+
+  useEffect(() => {
+    console.log(`running`)
+    axiosWithAuth()
+    .get(`https://wanderlustbw.herokuapp.com/locations/${localStorage.getItem('location')}`)
+    .then(response => {
+    console.log(`this is selected location`, response)
+    setLocation(response.data.location)
+    })
+    .catch(error => {
+    console.log(error)
+    });
+  }, [])
 
   const submitNewExperience = event => {
     event.preventDefault();
@@ -83,8 +98,7 @@ const CreatorCreateExperienceForm = (props) => {
               <input className="small-input"
                 type="number"
                 name="location_id"
-                value={experience.location_id}
-                onChange={handleChange}
+                value={location}
               />
             </div>
           </div>
