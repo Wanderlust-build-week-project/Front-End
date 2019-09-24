@@ -24,6 +24,7 @@ const ChooseLocation = (props) => {
     }, [])
 
     const addLocation = () => {
+        console.log(`this is the new location`, newLocation)
         axiosWithAuth()
         .post(`https://wanderlustbw.herokuapp.com/locations`, newLocation)
         .then(response => {
@@ -45,7 +46,7 @@ const ChooseLocation = (props) => {
                 <Link to = {'/creator-create-experience-form'} onClick = {() => localStorage.setItem('location', location.id)} >{location.location}</Link>
                 )}
 
-                <form onClick = {addLocation}>
+                <form onSubmit = {addLocation}>
                 <label className="Enter Location" for="name">Enter Location:</label>
                 <input
                     type="text"
