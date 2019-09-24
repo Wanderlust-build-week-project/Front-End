@@ -11,16 +11,17 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 
 function App() {
-  const [userID, setUserID] = useState({ id: ""});
 
   return (
     <Router>
       <div className="App">
         <Route exact path="/" component={SignUp} />
-        <Route exact path="/login" component={Login} userID = {userID} setUserID = {setUserID}/>
+        <Route 
+          exact path="/login" 
+          component={Login} 
+          />
         {/* <PrivateRoute exact path="/general-landing-page" component={GeneralLandingPage}/> */}
         <Route
-          exact
           path="/general-landing-page"
           component={GeneralLandingPage}
         />
@@ -31,7 +32,6 @@ function App() {
           exact
           path="/creator-viewing-page"
           component={CreatorViewingPage}
-          userID = {userID}
         />
         <Route
           path="/creator-create-experience-form"

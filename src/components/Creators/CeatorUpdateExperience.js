@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
+import axiosWithAuth from '../../utils/axiosWithAuth'
 
 import Header from '../Header';
 import './CVP.css';
@@ -24,6 +25,18 @@ const CreatorUpdateExperienceForm = (props) => {
       completed: false
     }
   );
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`https://wanderlustbw.herokuapp.com/experiences/${props.match.params.id}`)
+    .then(response => {
+      console.log(response)
+      setExperience(response)
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }, [props.match.params.id])
 
   const handleChange = e => {
     setExperience({...experience, [e.target.name]: e.target.value});

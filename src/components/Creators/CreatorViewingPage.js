@@ -21,7 +21,7 @@ const CreatorViewingPage = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`https://wanderlustbw.herokuapp.com/experiences/organizer/${props.userID}`)
+    .get(`https://wanderlustbw.herokuapp.com/experiences/organizer/${localStorage.getItem('userID')}`)
     .then(response => {
       console.log(response)
       setExperiences(response)
@@ -43,6 +43,7 @@ const CreatorViewingPage = (props) => {
             return (
               <Card
                 key={experience.id}
+                id={experience.id}
                 name={experience.name}
                 description={experience.description}
                 date={experience.date}

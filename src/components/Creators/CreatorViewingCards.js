@@ -22,7 +22,7 @@ export default function(props) {
     // }, [])
 
     const deleteExperience = id => {
-        console.log(`should be 4`, id)
+        console.log(id)
         axiosWithAuth()
         .delete(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
       .then(res => {
@@ -40,8 +40,8 @@ export default function(props) {
                 <span className="title">{props.name}</span>
                 <span className="location">{props.location}</span>
                 <span className="icons">
-                    <span><Link to={`/creator-create-experience-form`}><button className="icon-btn">&#9998;</button></Link></span>
-                    <span><button className="icon-btn" onClick = {deleteExperience(4)}>&#128465;</button></span>
+                    <span><Link to={`/creator-create-experience-form/${props.id}`}><button className="icon-btn">&#9998;</button></Link></span>
+                    <span><button className="icon-btn" onClick = {deleteExperience(props.id)}>&#128465;</button></span>
                 </span>
             </div>
             <hr></hr>
