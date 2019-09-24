@@ -27,7 +27,7 @@ const CreatorCreateExperienceForm = (props) => {
   );
 
   const [place, setPlace] = useState({
-    place: "try this"
+    place: ""
   });
 
   useEffect(() => {
