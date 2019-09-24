@@ -80,7 +80,7 @@ const SignUp = (props) => {
             onChange={handleChange}
           />
           <div id = "checkIfOrganizerSignUp" className = "are-you">
-            <label for = "creator">Are you an Organizer?</label>
+            <label htmlFor = "creator">Are you an Organizer?</label>
             <input type = "checkbox" id = "creator" name = "creatorCheckbox" />
           </div>
           <p className="already">Already Have an account?</p>

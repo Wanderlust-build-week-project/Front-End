@@ -35,18 +35,20 @@ const UserBrowsing = () => {
 
   return (
     <>
-    <Gallery
-    index={index}
-    onRequestChage={i => {
-      setIndex(i)
-    }} 
-    >{images.map(image => (
-      <GalleryImage objectFit="contain" src={image} />
-    ))} 
-    </Gallery>
+      <Gallery
+        index={index}
+        onRequestChage={i => {
+          setIndex(i)
+        }}
+      >{images.map(image => (
+        <GalleryImage objectFit="contain" src={image} />
+      ))}
+      </Gallery>
 
       <div>
-        <UserBrowsingCards />
+       {map.browser(browse => {
+         <UserBrowsingCards />
+       })}
         {/* ^ to map over after error clears */}
       </div>
     </>
