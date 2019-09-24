@@ -35,7 +35,7 @@ export default [
   {
     id: 4,
     description: null,
-    name: "Alaskain Wilderness",
+    name: "Alaskan Wilderness",
     duration: 1,
     date: null,
     completed: false,

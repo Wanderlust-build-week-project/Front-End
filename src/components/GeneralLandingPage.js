@@ -45,7 +45,7 @@ const GeneralLandingPage = props => {
   };
   const routeToCreateExp = event => {
     event.preventDefault();
-    props.history.push("/creator-create-experiance-form");
+    props.history.push("/creator-create-experience-form");
   };
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
@@ -59,7 +59,7 @@ const GeneralLandingPage = props => {
       <Header>
         Wanderlust
         <nav className="gerneral-header-nav">
-          <Link className="header-link" to="/creator-update-experiance-form">
+          <Link className="header-link" to="/user-browsing-page">
             My Trip History
           </Link>
           <Link className="header-link" to="/creator-viewing-page">
