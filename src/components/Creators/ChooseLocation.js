@@ -6,8 +6,7 @@ import {Link} from 'react-router-dom';
 const ChooseLocation = (props) => {
     const [locations, setLocations] = useState([])
     const [newLocation, setNewLocation] = useState({
-        location: "",
-        id : ""
+        location: ""
         } 
     )
 
@@ -23,13 +22,26 @@ const ChooseLocation = (props) => {
         });
     }, [])
 
-    const addLocation = () => {
-        console.log(`this is the new location`, newLocation)
+    const reRender = () => {
+        axiosWithAuth()
+        .get(`https://wanderlustbw.herokuapp.com/locations`)
+        .then(response => {
+        console.log(`this is on the choose location`, response)
+        setLocations(response.data)
+        })
+        .catch(error => {
+        console.log(error)
+        });
+    }
+
+    const addLocation = event => {
+        event.preventDefault();
+        console.log(`this is the new location`, newLocation.location)
         axiosWithAuth()
         .post(`https://wanderlustbw.herokuapp.com/locations`, newLocation)
         .then(response => {
         console.log(`location added`, response)
-        setLocations(response.data)
+        reRender();
         })
         .catch(error => {
         console.log(error)
