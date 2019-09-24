@@ -14,11 +14,14 @@ const SignUp = (props) => {
 
   const submitSignUp = e => {
     e.preventDefault();
-    var cont = document.getElementById('checkIfOrganizerSignUp').children;
+    var cont = document.getElementById('creator');
+    // console.log(cont)
     if (cont.checked) {
         createOrganizer();
+        // console.log(`organizer created`)
     } else {
         createUser();
+        // console.log(`guest created`)
     }
   }
 

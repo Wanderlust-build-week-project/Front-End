@@ -15,11 +15,14 @@ const Login = (props) => {
 
   const submitLogin = e => {
     e.preventDefault();
-    var cont = document.getElementById('checkIfOrganizerLogin').children;
+    var cont = document.getElementById('creator');
+    // console.log(cont)
     if (cont.checked) {
         loginOrganizer();
+        // console.log(`organizer logged in`)
     } else {
         loginUser();
+        // console.log(`guest logged in`)
     }
   }
 

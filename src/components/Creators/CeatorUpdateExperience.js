@@ -29,7 +29,7 @@ const CreatorUpdateExperienceForm = (props) => {
   useEffect(() => {
     var pathArray = window.location.pathname.split('/')
     // console.log(pathArray)
-    var id = pathArray[2]
+    var id = pathArray[pathArray.length -1]
     axiosWithAuth()
     .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
     .then(response => {
@@ -48,7 +48,7 @@ const CreatorUpdateExperienceForm = (props) => {
   const handleUpdate = () => {
   var pathArray = window.location.pathname.split('/')
   // console.log(pathArray)
-  var id = pathArray[2]
+  var id = pathArray[pathArray.length -1]
   axiosWithAuth()
     .put(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`, experience)
     .then(response => {
