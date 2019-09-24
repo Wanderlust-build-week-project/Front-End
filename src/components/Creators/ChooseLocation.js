@@ -1,12 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
 
 import Header from '../Header';
 import './CVP.css';
 
 
 const ChooseLocation = (props) => {
+
+    const Header = styled.div`
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    z-index: 2;
+    top: 0;
+    padding: 1vh 5vw;
+  `;
+
+  const Title = styled.h2`
+    font-size: 2rem;
+  `;
+
+  const NaviLink = styled.span`
+    text-decoration: none;
+    margin-left: 40px;
+  `;
+
+  const handleLogout = () => {
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    return "";
+  };
     const [locations, setLocations] = useState([])
     const [newLocation, setNewLocation] = useState({
         location: ""
@@ -57,7 +85,25 @@ const ChooseLocation = (props) => {
 
       return (
           <>
-            <Header />
+            <Header>
+                <Title>Wanderlust</Title>
+                <nav className="gerneral-header-nav">
+                <NaviLink>
+                    <Link className="header-link" to="/creator-viewing-page">
+                    My Created Trips
+                    </Link>
+                </NaviLink>
+                <NaviLink>
+                    <Link className="header-link" to="/experiences">
+                    Experiences
+                    </Link>
+                </NaviLink>
+
+                <NaviLink onClick={handleLogout}>
+                    <Link to="/">Logout</Link>
+                </NaviLink>
+                </nav>
+            </Header>
             <div className="loc-card">
                 <p className="title">Choose A Location</p>
                 <div className="loc-list">
