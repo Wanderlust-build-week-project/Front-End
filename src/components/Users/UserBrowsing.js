@@ -47,11 +47,12 @@ const UserBrowsing = () => {
         <button>Check out All Experinces</button>
         {browser.map(browse => {
           return (
-            <UserBrowsingCards key={browse.id}
+            <UserBrowsingCards key={browse.id} 
               title={browse.title}
               desc={browse.description}
               date={browse.date}
               hours={browse.hours}
+              exprnc=(browse.browse)
             />)
         })}
       </div>
