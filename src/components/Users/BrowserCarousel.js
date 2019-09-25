@@ -6,10 +6,8 @@ import unSplashData from "../../images/gerneral-landing-images/unSplashData";
 function BrowserCarousel() {
   const INITIAL_INDEX = 0;
 
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(unSplashData);
   const [index, setIndex] = useState(INITIAL_INDEX);
-
-  /* setImages(unSplashData); */
 
   useEffect(() => {
     const interval =
