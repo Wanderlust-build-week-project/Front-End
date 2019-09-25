@@ -80,7 +80,7 @@ const GeneralLandingPage = props => {
           </NaviLink>
 
           <NaviLink>
-            <Link className="header-link" to="/experiences">
+            <Link className="header-link" to="/user-browsing-page">
               Experiences
             </Link>
           </NaviLink>
