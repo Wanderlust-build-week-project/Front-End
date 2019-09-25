@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route path="/general-landing-page" component={GeneralLandingPage} />
         <Route path="/creator-landing-page" component={CreatorLandingPage} />
-        <Route exact path="/user-browsing-page" component={UserBrowsingPage} />
+        <Route path="/user-browsing-page" component={UserBrowsingPage} />
         <Route
           exact
           path="/creator-viewing-page"
