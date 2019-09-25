@@ -8,9 +8,6 @@ const UserBrowsing = () => {
   // const images = ["https://picsum.photos/id/1020/300/300", "https://picsum.photos/id/1001/300/300", "https://picsum.photos/id/1005/300/300", "https://picsum.photos/id/1023/300/300"]
   const [browser, setBrowser] = useState([]);
   // const [index, setIndex] = useState(0)
-  const [locations, setLocations] = useState({
-    location: ""
-  })
 
   // useEffect(() => {
   //   const interval = (() => {
@@ -30,15 +27,6 @@ const UserBrowsing = () => {
       .then(res => {
         setBrowser(res.data)
         console.log(res)
-        axiosWithAuth()
-        .get(`https://wanderlustbw.herokuapp.com/locations${res.data.location_id}`)
-        .then(response => {
-        console.log(`this is on the choose location`, response)
-        setLocations(response.data)
-        })
-        .catch(error => {
-        console.log(error)
-        });
       })
       .catch(err => console.log('Loading Error Experinces', err))
   }, [])
@@ -67,7 +55,7 @@ const UserBrowsing = () => {
               date={browse.date}
               completed ={browse.complted}
               oranizerID ={browse.oranizer_id}
-              location ={locations}
+              location ={browse.location_id}
             />)
         })}
       </div>
