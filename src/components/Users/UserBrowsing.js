@@ -11,7 +11,6 @@ import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
 import './UserBrowsing.css';
-import SearchResults from './SearchResults';
 
 const UserBrowsing = props => {
     const [browser, setBrowser] = useState([]);
@@ -75,28 +74,31 @@ tripsData.map((trip, index) => {
     setSearch({searchTerm: e.target.value});
   }
 
-  const submitSearch = e => {
-    e.preventDefault();
-    axiosWithAuth()
-    .get(`https://wanderlustbw.herokuapp.com/exp`)
-    .then(res => {
-      // console.log(res.data)
-      res.data.map(item => {
-        // console.log(item) 
-        var re = new RegExp(search.searchTerm, 'gi');
-        // console.log(`this is item.name`, item.name)
-        // console.log(`this is search`, re)
-        var check = item.name.match(re)
-        // console.log(`this is check`, check)
-        if (check) {
-          
-        } else {
-          console.log('not found')
-        }
-      })
-      .catch(err => console.log("Loading Error Experinces", err));
-  })
-}
+//   const submitSearch = e => {
+//     localStorage.setItem("SearchResults", "")
+//     e.preventDefault();
+//     axiosWithAuth()
+//     .get(`https://wanderlustbw.herokuapp.com/exp`)
+//     .then(res => {
+//       // console.log(res.data)
+//       res.data.map(item => {
+//         // console.log(item) 
+//         var re = new RegExp(search.searchTerm, 'gi');
+//         // console.log(`this is item.name`, item.name)
+//         // console.log(`this is search`, re)
+//         var check = item.name.match(re)
+//         // console.log(`this is check`, check)
+//         if (check) {
+//           // setFoundItems(...foundItems, item.id)
+//         } else {
+//           console.log('not found')
+//         }
+//       }).then(
+//         // localStorage.setItem("SearchResults", JSON.stringify(foundItems))
+//       )
+//       .catch(err => console.log("Loading Error Experinces", err));
+//   })
+// }
 
   const UserBrowsingWrapper = styled.div`
     position: relative;
@@ -121,7 +123,7 @@ tripsData.map((trip, index) => {
   return (
     <>
       <div className = "searchForm">
-        <form onSubmit = {submitSearch}>
+        <form >
           <input
               type = "text"
               placeholder = "Search Experiences"
