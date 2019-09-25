@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import axiosWithAuth from '../../utils/axiosWithAuth'
-import axios from 'axios'
-import UserBrowsingCards from './UserBrowsingCards';
-import { Gallery, GalleryImage } from 'react-gesture-gallery';
-import { AnimatedProps } from '@react-spring/animated';
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../../utils/axiosWithAuth";
+import axios from "axios";
+import UserBrowsingCards from "./UserBrowsingCards";
+import { Gallery, GalleryImage } from "react-gesture-gallery";
+import { AnimatedProps } from "@react-spring/animated";
 import { Route } from "react-router-dom";
 import Header from "../Header";
 import BrowserCarousel from "./BrowserCarousel";
@@ -28,6 +28,28 @@ const UserBrowsing = props => {
   /* I copy/pasted 50 small photos from console.log(tripsData) put them in images/generalLandingImages/unSplash.js imported to this file. we can use these outdoor photos in conjuntion with 2nd index paramater on map. They are the same order as tripsData */
   const [slpashImages, setSplashImages] = useState(splashPhotos);
 
+  // unsplash API get
+  //Greg's api key for unsplash. rate limit 50 request/hr
+  /* const APIKey =
+    "87bd86fadbc47436e983dd82ec6c282a4d0a502f71262a7b9631d0ac0b204bca";
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.unsplash.com/search/photos?page=1&query=outdoors&per_page=50&client_id=${APIKey}`
+      )
+      .then(response => {
+        const results = response.data.results;
+
+        
+        setTripsData(results);
+      })
+      .catch(error => {
+        console.log("Whoops from UserBrowsing.js", error);
+      });
+  }, []);
+
+  console.log("trips", tripsData); */
+
   /* useEffect(() => {
 tripsData.map((trip, index) => {
   let smallImg = trip.urls;
@@ -41,11 +63,11 @@ tripsData.map((trip, index) => {
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/exp`)
       .then(res => {
-        setBrowser(res.data)
+        setBrowser(res.data);
         // console.log(res)
       })
-      .catch(err => console.log('Loading Error Experinces', err))
-  }, [])
+      .catch(err => console.log("Loading Error Experinces", err));
+  }, []);
   // ^ for cards
 
   const handleChange = e => {
@@ -72,19 +94,21 @@ tripsData.map((trip, index) => {
           console.log('not found')
         }
       })
-    })
-    .catch(err => console.log('Loading Error Experinces', err))
-  }
+      .catch(err => console.log("Loading Error Experinces", err));
+  })
+}
 
   const UserBrowsingWrapper = styled.div`
-  position: relative;
-  top: 10vh;
+    position: relative;
+    top: 10vh;
   `;
 
   const BrowseAllListWrapper = styled.div`
-    /* border: 2px solid yellow; */
-    text-align: center;
-    `;
+    border: 2px solid yellow;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  `;
 
   const Button = styled.button`
     padding: 5px 40px;
@@ -93,7 +117,7 @@ tripsData.map((trip, index) => {
     cursor: pointer;
     box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
       0 2px 4px rgba(0, 0, 0, 0.24);
-`;
+  `;
   return (
     <>
       <div className = "searchForm">
@@ -140,6 +164,6 @@ tripsData.map((trip, index) => {
     </UserBrowsingWrapper> 
     </>
   );
-}
+};
 
-export default UserBrowsing
+export default UserBrowsing;
