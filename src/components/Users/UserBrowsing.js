@@ -10,7 +10,8 @@ import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
-import './UserBrowsing.css'
+import './UserBrowsing.css';
+import SearchResults from './SearchResults';
 
 const UserBrowsing = props => {
     const [browser, setBrowser] = useState([]);
@@ -61,15 +62,12 @@ tripsData.map((trip, index) => {
       res.data.map(item => {
         // console.log(item) 
         var re = new RegExp(search.searchTerm, 'gi');
-        console.log(`this is item.name`, item.name)
-        console.log(`this is search`, re)
+        // console.log(`this is item.name`, item.name)
+        // console.log(`this is search`, re)
         var check = item.name.match(re)
-        console.log(`this is check`, check)
+        // console.log(`this is check`, check)
         if (check) {
-          console.log('found')
-          setFoundItems(...foundItems, item)
-          console.log(foundItems)
-          props.history.push('/search-results')
+          
         } else {
           console.log('not found')
         }

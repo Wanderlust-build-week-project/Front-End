@@ -7,15 +7,16 @@ import {
 import Header from "../Header"
 
 const SearchResults = (props) => {
+  console.log(props)
     const [searchOutcome, setSearchOutcome] = useState([])
     const [place, setPlace] = useState("")
     const [oranizer, setOrganizer] = useState("")
 
     useEffect(() => {
-        var pathArray = window.location.pathname.split('/')
-        var id = pathArray[pathArray.length -1]
+        // var pathArray = window.location.pathname.split('/')
+        // var id = pathArray[pathArray.length -1]
         axiosWithAuth()
-        .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
+        .get(`https://wanderlustbw.herokuapp.com/exp/experience/${props.foundItems}`)
         .then(response => {
           console.log(`this is on the Search Outcome page`, response.data)
             setSearchOutcome(response.data)
