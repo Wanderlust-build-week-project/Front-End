@@ -45,8 +45,10 @@ const UserBrowsing = () => {
     .then(res => {
       console.log(res.data)
       res.data.map(item => {
-        console.log(item.name)
-        if (item.name === search) {
+        console.log(item)
+        // console.log(`this is item.name`, JSON.stringify(item.name))
+        // console.log(`this is search`, search.search)
+        if (JSON.stringify(item.name) == JSON.stringify(search.search)) {
           console.log('found')
         } else {
           console.log('not found')
