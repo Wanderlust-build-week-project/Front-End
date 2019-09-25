@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import { Route, Link } from "react-router-dom";
 import UserExperience from "./UserExperience";
-import ContactForm from "./ContactForm";
 import {
   Card,
   CardImg,
@@ -17,17 +16,14 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 /* good going on the reactstrap cards, Cori. They look really nice :) */
-
 const UserBrowsingCards = props => {
   // console.log (props)
   const [place, setPlace] = useState({
     place: ""
   });
-
   const [oranizer, setOrganizer] = useState({
     oranizer: ""
   });
-
   useEffect(() => {
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/locations/${props.location}`)
@@ -39,7 +35,6 @@ const UserBrowsingCards = props => {
         console.log(error);
       });
   }, []);
-
   useEffect(() => {
     //   console.log(props.organizerID)
     axiosWithAuth()
@@ -52,7 +47,6 @@ const UserBrowsingCards = props => {
         console.log(error);
       });
   }, []);
-
   return (
     <div>
       <Row>
@@ -75,5 +69,4 @@ const UserBrowsingCards = props => {
     </div>
   );
 };
-
 export default UserBrowsingCards;
