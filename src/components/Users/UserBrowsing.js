@@ -11,7 +11,6 @@ import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
-
 const UserBrowsing = props => {
   const [browser, setBrowser] = useState([]);
   const [search, setSearch] = useState("");
@@ -22,7 +21,6 @@ const UserBrowsing = props => {
   const [tripsData, setTripsData] = useState([{}]);
   /* I copy/pasted 50 small photos from console.log(tripsData) put them in images/generalLandingImages/unSplash.js imported to this file. we can use these outdoor photos in conjuntion with 2nd index paramater on map. They are the same order as tripsData */
   const [slpashImages, setSplashImages] = useState(splashPhotos);
-
   // unsplash API get
   //Greg's api key for unsplash. rate limit 50 request/hr
   /* const APIKey =
@@ -34,7 +32,6 @@ const UserBrowsing = props => {
       )
       .then(response => {
         const results = response.data.results;
-
         
         setTripsData(results);
       })
@@ -42,9 +39,7 @@ const UserBrowsing = props => {
         console.log("Whoops from UserBrowsing.js", error);
       });
   }, []);
-
   console.log("trips", tripsData); */
-
   /* useEffect(() => {
 tripsData.map((trip, index) => {
   let smallImg = trip.urls;
@@ -52,7 +47,6 @@ tripsData.map((trip, index) => {
   console.log("splash: ", slpashImages);
 });
 }, []); */
-
   useEffect(() => {
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/exp`)
@@ -63,11 +57,9 @@ tripsData.map((trip, index) => {
       .catch(err => console.log("Loading Error Experinces", err));
   }, []);
   // ^ for cards
-
   const handleChange = e => {
     setSearch({ ...search, [e.target.name]: e.target.value });
   };
-
   const submitSearch = e => {
     e.preventDefault();
     axiosWithAuth()
@@ -90,19 +82,16 @@ tripsData.map((trip, index) => {
       })
       .catch(err => console.log("Loading Error Experinces", err));
   };
-
   const UserBrowsingWrapper = styled.div`
     position: relative;
     top: 10vh;
   `;
-
   const BrowseAllListWrapper = styled.div`
     border: 2px solid yellow;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
   `;
-
   const Button = styled.button`
     padding: 5px 40px;
     margin: 10px auto;
@@ -147,5 +136,4 @@ tripsData.map((trip, index) => {
     </>
   );
 };
-
 export default UserBrowsing;
