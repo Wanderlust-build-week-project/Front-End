@@ -5,7 +5,7 @@ import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
 import styled from "styled-components";
 
 const BrowsingList = styled.div`
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
   display: flex;
   flex-flow: row wrap;
   align-items: center;

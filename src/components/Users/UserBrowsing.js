@@ -23,7 +23,7 @@ const Button = styled.button`
     0 2px 4px rgba(0, 0, 0, 0.24);
 `;
 const BrowseAllListWrapper = styled.div`
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   text-align: center;
 `;
 
@@ -83,7 +83,10 @@ tripsData.map((trip, index) => {
 
       <BrowserCarousel />
       <BrowseAllListWrapper>
-        <Button onClick={routeToBrowsAll}>Check out All Experinces</Button>
+        <Button id="showAll" onClick={routeToBrowsAll}>
+          Check out All Experinces
+        </Button>
+
         <Route
           exact
           path="/user-browsing-page/browse-all-list"
