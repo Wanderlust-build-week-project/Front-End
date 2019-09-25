@@ -1,13 +1,6 @@
 //this page will not be displayed but will take in data from the User Browsing page and return it as cards
-<<<<<<< HEAD
 import { Route, Link } from "react-router-dom";
 import React from 'react'
-=======
-import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Route, Link } from "react-router-dom";
-import UserExperience from "./UserExperience";
->>>>>>> 932547d57a2c5c75485e059fb55153a65a62f59d
 import {
   Card,
   CardImg,
@@ -52,7 +45,6 @@ const UserBrowsingCards = props => {
         console.log(error);
       });
   }, []);
-<<<<<<< HEAD
 
       return (
         <>
@@ -93,28 +85,3 @@ const UserBrowsingCards = props => {
 
 
 export default UserBrowsingCards
-=======
-  return (
-    <div>
-      <Row>
-        <Col sm="6" lg="12">
-          <Card>
-            <Link to={`/user-browsing-page/browse-all-list/${props.id}`}>
-              <CardImg top width="100%" src={props.image} alt={props.title} />
-              <CardBody {...props.key}>
-                <CardTitle>{props.title}</CardTitle>
-                <CardSubtitle>{props.desc}</CardSubtitle>
-                <CardText>{place.place}</CardText>
-                <CardText>{props.hours}</CardText>
-                <CardText>{props.date}</CardText>
-                <CardText>{oranizer.oranizer}</CardText>
-              </CardBody>
-            </Link>
-          </Card>
-        </Col>
-      </Row>
-    </div>
-  );
-};
-export default UserBrowsingCards;
->>>>>>> 932547d57a2c5c75485e059fb55153a65a62f59d
