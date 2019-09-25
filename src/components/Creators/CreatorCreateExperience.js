@@ -1,125 +1,97 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axiosWithAuth from '../../utils/axiosWithAuth';
-import styled from 'styled-components';
-
+import Geosuggest from 'react-geosuggest';
 import Header from '../Header';
 import './CVP.css';
+import './geosuggest.css';
 
+const locationPlaceholder = "location_id";
 const CreatorCreateExperienceForm = (props) => {
-
-  const Header = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  height: fit-content;
-  z-index: 2;
-  top: 0;
-  padding: 1vh 5vw;
-`;
-
-const Title = styled.h2`
-  font-size: 2rem;
-`;
-
-const NaviLink = styled.span`
-  text-decoration: none;
-  margin-left: 40px;
-`;
-
-const handleLogout = () => {
-  localStorage.removeItem("userID");
-  localStorage.removeItem("token");
-  return "";
-};
-
 
   const dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1;
   var day = dateObj.getUTCDate();
   var year = dateObj.getUTCFullYear();
-
-  const today = month + "-" + day + "-" + year;
+  const tomorrow = month + "-" + day + "-" + year + " 12:00PM";
 
   const [experience, setExperience] = useState(
     {
       name: "",
       description: "",
-      date: "",
-      duration: "",
-      organizer_id: localStorage.getItem('userID'),
-      location_id: localStorage.getItem('location'),
+      date: null,
+      duration: 1,
+      organizer_id: parseInt(localStorage.getItem('userID'), 10),
+      location_id: 0,
       completed: false
     }
   );
-
-  const [place, setPlace] = useState({
-    place: ""
-  });
-
-  useEffect(() => {
-    console.log(`running`)
-    axiosWithAuth()
-    .get(`https://wanderlustbw.herokuapp.com/locations/${localStorage.getItem('location')}`)
-    .then(response => {
-    console.log(`this is selected location`, response.data)
-    setPlace({place: response.data.location})
-    // console.log(`this is location`, location)
-    })
-    .catch(error => {
-    console.log(error)
-    });
-  }, [])
-
-  const submitNewExperience = event => {
-    event.preventDefault();
-    console.log(`this is experiance`, experience)
-    axiosWithAuth()
-      .post('https://wanderlustbw.herokuapp.com/exp', experience)
-      .then(res => {
-        console.log(res)
-        props.history.push(`/creator-viewing-page`)
-      })
-      .catch(err => console.log(err));
-  };
 
   const handleChange = e => {
     setExperience({...experience, [e.target.name]: e.target.value});
   }
 
+  function handleGeosuggestChange(value) {
+    let selectedPlace;
+    if(value.description.includes(",")) {
+    selectedPlace = value.description.split(',')[0];
+  } else {
+    selectedPlace = value.description;
+  }
+    let exists = false;
+
+    axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
+    .then(response => {
+      if (response.data.id > 0) {
+        exists = true;
+        console.log("Does", selectedPlace , "exist in the database?", exists, ". id:", response.data.id)
+        setExperience({...experience, [locationPlaceholder]: response.data.id});
+      } else {
+          exists = false;
+          console.log("Does ", selectedPlace," exist?", exists)
+          console.log(`This is a new location:`, selectedPlace)
+          const place = {"location": selectedPlace}
+          axiosWithAuth()
+          .post(`https://wanderlustbw.herokuapp.com/locations`, place)
+          .then(response => {
+            console.log(`Location added.`, response)
+            axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
+            .then(response=> {
+              setExperience({...experience, [locationPlaceholder]: response.data.id});
+            })
+            .catch(error => {
+              console.log("Unable to fetch location after add.", error)
+            })
+          })
+          .catch(error => {
+            console.log("Unable to add location.", error)
+          });
+      }
+    })
+    .catch(error => {
+      console.log("Error accessing location database.", error)
+    })
+  }
+
+  const submitNewExperience = event => {
+    event.preventDefault();
+    console.log(`Creating new experience:`, experience)
+    axiosWithAuth()
+      .post('https://wanderlustbw.herokuapp.com/exp', experience)
+      .then(res => {
+        console.log("New experience response:", res)
+        props.history.push(`/creator-viewing-page`)
+      })
+      .catch(err => console.log("Unable to submit experience.", err.message));
+  };
+
   return (
     <>
-      <Header>
-        <Title>Wanderlust</Title>
-        <nav className="gerneral-header-nav">
-          <NaviLink>
-            <Link className="header-link" to="/creator-landing-page">
-              Home
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/creator-viewing-page">
-              My Created Trips
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/experiences">
-              Experiences
-            </Link>
-          </NaviLink>
-
-          <NaviLink onClick={handleLogout}>
-            <Link to="/">Logout</Link>
-          </NaviLink>
-        </nav>
-      </Header>
-
+      <Header />
       <div className="new-experience">
         <h2>Create a New Experience</h2>
         <form className="new-experience-form" onSubmit = {submitNewExperience}>
-          <label className="label" for="name">Title:</label>
+          <label className="label" htmlFor="name">Title:</label>
           <input className="new-experience-input"
             type="text"
             name="name"
@@ -127,21 +99,21 @@ const handleLogout = () => {
             value={experience.name}
             onChange={handleChange}
           />
-          <label className="label" for="description">Description:</label>
+          <label className="label" htmlFor="description">Description:</label>
           <textarea className="description" name="description" placeholder="Experience Description" value={experience.description} onChange={handleChange} />
           <div className="date-dur-loc">
             <div className="column">
-            <label className="label" for="date">Date:</label>
+            <label className="label" htmlFor="date">Date and time:</label>
               <input className="small-input"
                 type="datetime"
                 name="date"
-                placeholder={today}
+                placeholder={tomorrow}
                 value={experience.date}
                 onChange={handleChange}
               />
             </div>
             <div className="column">
-              <label className="label" for="duration">Duration in hours: </label>
+              <label className="label" htmlFor="duration">Duration in hours: </label>
                 <input className="small-input"
                 type="number"
                 name="duration"
@@ -149,9 +121,9 @@ const handleLogout = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="column location">     
-              <label className="label" for="duration">Location: </label> 
-              <Link to="/choose-location">{place.place}</Link>
+            <div className="column">
+              <label className="label" htmlFor="location">Location: </label>
+              <Geosuggest onSuggestSelect={handleGeosuggestChange}/>
             </div>
           </div>
           <span className="button-span">
@@ -163,5 +135,7 @@ const handleLogout = () => {
     </>
   );
 };
+
+
 
 export default CreatorCreateExperienceForm;
