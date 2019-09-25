@@ -104,10 +104,19 @@ transform: scale(1);
   .label {
     margin: 8px 0 3px;
   }
-  .new-experience.input {
-    padding: 5px 10px;
-    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+  .new-experience-input {
+    width: 100%;
+    border: 2px solid transparent;
+    box-shadow: 0 0 1px #3d464d;
+    padding: .5em 1em;
+    -webkit-transition: border 0.2s, box-shadow 0.2s;
+            transition: border 0.2s, box-shadow 0.2s;
   }
+  .new-experience-input:focus {
+    border-color: #267dc0;
+    box-shadow: 0 0 0 transparent;
+  }
+  
   .description {
     height: 150px;
     padding: 5px 10px;
@@ -122,10 +131,19 @@ transform: scale(1);
     flex-direction: column;
   }
   .small-input {
-    width: 50%;
+    width: 90%;
+    height: 35px;
     padding: 0px 10px;
-    margin: 0 10px;
-    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+    margin: 0 10px 0 0;
+    border: 2px solid transparent;
+    box-shadow: 0 0 1px #3d464d;
+    padding: .5em 1em;
+    -webkit-transition: border 0.2s, box-shadow 0.2s;
+            transition: border 0.2s, box-shadow 0.2s;
+  }
+  .small-input:focus {
+    border-color: #267dc0;
+    box-shadow: 0 0 0 transparent;
   }
   .button-span {
     width: 100%;

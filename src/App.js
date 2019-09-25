@@ -36,7 +36,6 @@ function App() {
           path="/creator-update-experience-form"
           component={CreatorUpdateExperienceForm}
         />
-                />
          <Route
           path="/choose-location"
           component={ChooseLocation}

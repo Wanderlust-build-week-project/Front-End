@@ -10,33 +10,6 @@ import './CVP.css';
 
 const CreatorViewingPage = (props) => {
 
-    const Header = styled.div`
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    width: 100%;
-    height: fit-content;
-    z-index: 2;
-    top: 0;
-    padding: 1vh 5vw;
-  `;
-
-  const Title = styled.h2`
-    font-size: 2rem;
-  `;
-
-  const NaviLink = styled.span`
-    text-decoration: none;
-    margin-left: 40px;
-  `;
-
-  const handleLogout = () => {
-    localStorage.removeItem("userID");
-    localStorage.removeItem("token");
-    return "";
-  };
-
   const [experiences, setExperiences] = useState([{
     id: "",
     name: "",
@@ -72,7 +45,7 @@ const CreatorViewingPage = (props) => {
   }
 
   const deleteExperience = (id) => {
-    console.log(id)
+    console.log("Experience to Delete ID", id)
     axiosWithAuth()
     .delete(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
   .then(res => {
@@ -86,33 +59,10 @@ const CreatorViewingPage = (props) => {
 
   return (
     <>
-      <Header>
-        <Title>Wanderlust</Title>
-        <nav className="gerneral-header-nav">
-          <NaviLink>
-            <Link className="header-link" to="/creator-landing-page">
-              Home
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/creator-viewing-page">
-              My Created Trips
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/experiences">
-              Experiences
-            </Link>
-          </NaviLink>
-
-          <NaviLink onClick={handleLogout}>
-            <Link to="/">Logout</Link>
-          </NaviLink>
-        </nav>
-      </Header>
+      <Header />
       <div className="titlebar">
         <span className="title">Your Experiences</span>
-        <span><Link to="/choose-location"><button className="create-new">Create New</button></Link></span>
+        <span><Link to="/creator-create-experience-form"><button className="create-new">Create New</button></Link></span>
       </div>
         {
           experiences.map((experience) => {

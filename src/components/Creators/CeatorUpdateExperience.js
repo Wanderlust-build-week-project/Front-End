@@ -1,39 +1,13 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axiosWithAuth from '../../utils/axiosWithAuth'
-import styled from 'styled-components';
-
+import Geosuggest from 'react-geosuggest';
 import Header from '../Header';
 import './CVP.css';
+import './geosuggest.css';
 
+const locationPlaceholder = "location_id";
 const CreatorUpdateExperienceForm = (props) => {
-
-  const Header = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  height: fit-content;
-  z-index: 2;
-  top: 0;
-  padding: 1vh 5vw;
-`;
-
-const Title = styled.h2`
-  font-size: 2rem;
-`;
-
-const NaviLink = styled.span`
-  text-decoration: none;
-  margin-left: 40px;
-`;
-
-const handleLogout = () => {
-  localStorage.removeItem("userID");
-  localStorage.removeItem("token");
-  return "";
-};
 
   const dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1;
@@ -88,6 +62,43 @@ const handleLogout = () => {
     setExperience({...experience, [e.target.name]: e.target.value});
   }
 
+  function handleGeosuggestChange(value) {
+    const selectedPlace = value.description.split(',')[0];
+    let exists = false;
+
+    axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
+    .then(response => {
+      if (response.data.id > 0) {
+        exists = true;
+        console.log("Does", selectedPlace , "exist in the database?", exists, ". id:", response.data.id)
+        setExperience({...experience, [locationPlaceholder]: response.data.id});
+      } else {
+          exists = false;
+          console.log("Does ", selectedPlace," exist?", exists)
+          console.log(`This is a new location:`, selectedPlace)
+          const place = {"location": selectedPlace}
+          axiosWithAuth()
+          .post(`https://wanderlustbw.herokuapp.com/locations`, place)
+          .then(response => {
+            console.log(`Location added.`, response)
+            axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
+            .then(response=> {
+              setExperience({...experience, [locationPlaceholder]: response.data.id});
+            })
+            .catch(error => {
+              console.log("Unable to fetch location after add.", error)
+            })
+          })
+          .catch(error => {
+            console.log("Unable to add location.", error)
+          });
+      }
+    })
+    .catch(error => {
+      console.log("Error accessing location database.", error)
+    })
+  }
+
   const handleUpdate = () => {
   var pathArray = window.location.pathname.split('/')
   // console.log(pathArray)
@@ -104,30 +115,7 @@ const handleLogout = () => {
 
   return (
     <>
-      <Header>
-        <Title>Wanderlust</Title>
-        <nav className="gerneral-header-nav">
-          <NaviLink>
-            <Link className="header-link" to="/creator-landing-page">
-              Home
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/creator-viewing-page">
-              My Created Trips
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="/experiences">
-              Experiences
-            </Link>
-          </NaviLink>
-
-          <NaviLink onClick={handleLogout}>
-            <Link to="/">Logout</Link>
-          </NaviLink>
-        </nav>
-      </Header>
+      <Header/>
       <div className="new-experience">
         <h2>Update This Experience</h2>
         <form className="new-experience-form" onSubmit = {handleUpdate}>
@@ -143,7 +131,7 @@ const handleLogout = () => {
           <textarea className="description" name="description" placeholder="Experience Description" value={experience.description} onChange={handleChange} />
           <div className="date-dur-loc">
             <div className="column">
-            <label className="label" for="date">Date:</label>
+            <label className="label" for="date">Date and time:</label>
               <input className="small-input"
                 type="datetime"
                 name="date"
@@ -161,14 +149,9 @@ const handleLogout = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="column">      
-              <label className="label" for="location">Location: </label>
-                <input className="small-input"
-                  type="text"
-                  name="place"
-                  value={place.place}
-                  onChange={handleChange}
-                />
+            <div className="column">
+              <label className="label" htmlFor="location">Location: </label>
+              <Geosuggest onSuggestSelect={handleGeosuggestChange} />
             </div>
           </div>
           <span className="button-span">
