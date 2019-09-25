@@ -114,7 +114,6 @@ tripsData.map((trip, index) => {
   return (
     <>
       <Header />
-<<<<<<< HEAD
 
       <BrowserCarousel />
       <BrowseAllListWrapper>
@@ -132,11 +131,6 @@ tripsData.map((trip, index) => {
             />)
         })}
         <form onSubmit = {submitSearch}>
-=======
-      <UserBrowsingWrapper>
-        <BrowserCarousel />
-        <form onSubmit={submitSearch}>
->>>>>>> ebc52c2e12c03991289dd32474fe30cba68c922e
           <input
             name="search"
             type="text"
