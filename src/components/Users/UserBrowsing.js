@@ -44,14 +44,16 @@ const UserBrowsing = (props) => {
     axiosWithAuth()
     .get(`https://wanderlustbw.herokuapp.com/exp`)
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       res.data.map(item => {
-        console.log(item)
-        // console.log(`this is item.name`, JSON.stringify(item.name))
-        // console.log(`this is search`, search.search)
-        if (JSON.stringify(item.name) == JSON.stringify(search.search)) {
+        // console.log(item)
+        console.log(`this is item.name`, JSON.stringify(item.name))
+        console.log(`this is search`, search.search)
+        var check = item.name.match(JSON.stringify(/Hike/gi))
+        console.log(`this is check`, check)
+        if (check) {
           console.log('found')
-          props.history.push(`/search-results/${item.id}`)
+          // props.history.push(`/search-results/${item.id}`)
         } else {
           console.log('not found')
         }
