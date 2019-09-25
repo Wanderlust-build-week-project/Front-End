@@ -3,8 +3,9 @@ import axiosWithAuth from '../../utils/axiosWithAuth'
 import UserBrowsingCards from './UserBrowsingCards';
 import { Gallery, GalleryImage } from 'react-gesture-gallery';
 import { Search } from 'semantic-ui-react';
+import { AnimatedProps } from '@react-spring/animated';
 
-const UserBrowsing = () => {
+const UserBrowsing = (props) => {
   // const INITIAL_INDEX = 0
   // const images = ["https://picsum.photos/id/1020/300/300", "https://picsum.photos/id/1001/300/300", "https://picsum.photos/id/1005/300/300", "https://picsum.photos/id/1023/300/300"]
   const [browser, setBrowser] = useState([]);
@@ -50,6 +51,7 @@ const UserBrowsing = () => {
         // console.log(`this is search`, search.search)
         if (JSON.stringify(item.name) == JSON.stringify(search.search)) {
           console.log('found')
+          props.history.push(`/search-results/${item.id}`)
         } else {
           console.log('not found')
         }
