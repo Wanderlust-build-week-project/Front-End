@@ -5,13 +5,22 @@ import React from 'react'
 =======
 import React, {useState, useEffect} from 'react'
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import { Link } from "react-router-dom";
 
 >>>>>>> 8b3f93ff74166b99f495f90416bf151c4ca1e89b
 import {
-    Card, CardImg, CardText, CardBody, CardLink,
-    CardTitle, CardSubtitle, Row, Col
-} from 'reactstrap';
-import Header from "../Header"
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardLink,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col
+} from "reactstrap";
+import styled from "styled-components";
+/* good going on the reactstrap cards, Cori. They look really nice :) */
 
 const UserBrowsingCards = (props) => {
     // console.log (props)
@@ -48,6 +57,7 @@ const UserBrowsingCards = (props) => {
             })
       }, [])
 
+<<<<<<< HEAD
     return (
         <div>
             <Header />
@@ -83,5 +93,29 @@ const UserBrowsingCards = (props) => {
         </div>
     )
 }
+=======
+return (
+  <div>
+    <Row>
+      <Col sm="6" lg="12">
+        <Link to={`/user-browsing-page/browse-all-list/${props.key}`}>
+          <Card>
+            <CardImg top width="100%" src={props.image} alt={props.title} />
+            <CardBody {...props.key}>
+              <CardTitle>{props.title}</CardTitle>
+              <CardSubtitle>{props.desc}</CardSubtitle>
+              <CardText>{place.place}</CardText>
+              <CardText>{props.hours}</CardText>
+              <CardText>{props.date}</CardText>
+              <CardText>{oranizer.oranizer}</CardText>
+            </CardBody>
+          </Card>
+        </Link>
+      </Col>
+    </Row>
+  </div>
+);
+};
+>>>>>>> 61b038e6f066a27bd4c814f6c777d90650749fd0
 
 export default UserBrowsingCards
