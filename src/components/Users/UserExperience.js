@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Navlink } from "react-router-dom";
 function UserExperience(props) {
-  /* const userX = props.images.find(
+  /*  const userX = props.images.find(
     trip => trip.id === Number(props.match.params.id)
   ); */
   console.log("props from UserEx", props);
