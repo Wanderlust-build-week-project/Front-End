@@ -9,6 +9,7 @@ import CreatorViewingPage from "./components/Creators/CreatorViewingPage";
 import CreatorCreateExperienceForm from "./components/Creators/CreatorCreateExperience";
 import CreatorUpdateExperienceForm from "./components/Creators/CeatorUpdateExperience";
 import ChooseLocation from './components/Creators/ChooseLocation';
+import SearchResults from './components/Users/SearchResults';
 
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -19,10 +20,9 @@ function App() {
       <div className="App">
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
-        {/* <PrivateRoute exact path="/general-landing-page" component={GeneralLandingPage}/> */}
         <Route path="/general-landing-page" component={GeneralLandingPage} />
         <Route path="/creator-landing-page" component={CreatorLandingPage} />
-        <Route exact path="/user-browsing-page" component={UserBrowsingPage} />
+        <Route path="/user-browsing-page" component={UserBrowsingPage} />
         <Route
           exact
           path="/creator-viewing-page"
@@ -39,6 +39,10 @@ function App() {
          <Route
           path="/choose-location"
           component={ChooseLocation}
+        />
+        <Route
+          path="/search-results"
+          component={SearchResults}
         />
       </div>
     </Router>

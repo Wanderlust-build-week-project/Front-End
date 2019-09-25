@@ -5,6 +5,8 @@ import "./GeneralLandingPage.css";
 import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
+import UserSaved from "../components/Users/UserSaved"
+
 /* ===== styled components ======= */
 const Header = styled.div`
   background-color: white;
@@ -79,7 +81,7 @@ const GeneralLandingPage = props => {
           </NaviLink>
 
           <NaviLink>
-            <Link className="header-link" to="/experiences">
+            <Link className="header-link" to="/user-browsing-page">
               Experiences
             </Link>
           </NaviLink>
@@ -106,7 +108,7 @@ const GeneralLandingPage = props => {
               </Button>
             </div>
             <div className="become-a-creator">
-              <h3>Wan't to host your own tour? </h3>
+              <h3>Want to host your own tour? </h3>
               <Button
                 onClick={() => props.history.push("/creator-viewing-page")}
               >
@@ -116,6 +118,7 @@ const GeneralLandingPage = props => {
           </div>
         </div>
       </GeneralLanding>
+      <UserSaved />
     </>
   );
 };
