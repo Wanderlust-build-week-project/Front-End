@@ -3,7 +3,6 @@ import axiosWithAuth from '../../utils/axiosWithAuth'
 import axios from 'axios'
 import UserBrowsingCards from './UserBrowsingCards';
 import { Gallery, GalleryImage } from 'react-gesture-gallery';
-import { Search } from 'semantic-ui-react';
 import { AnimatedProps } from '@react-spring/animated';
 import { Route } from "react-router-dom";
 import Header from "../Header";
@@ -11,10 +10,15 @@ import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
+import './UserBrowsing.css'
 
 const UserBrowsing = props => {
     const [browser, setBrowser] = useState([]);
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState({
+      searchTerm: ""
+    })
+    const [foundItems, setFoundItems] = useState([])
+
   /* will do get requests for organizers and experiences to set these states below
    working on this at night, currently not able to axiosWithAuth, will troubleshoot with backend tomorrow 
  */
@@ -22,28 +26,6 @@ const UserBrowsing = props => {
   const [tripsData, setTripsData] = useState([{}]);
   /* I copy/pasted 50 small photos from console.log(tripsData) put them in images/generalLandingImages/unSplash.js imported to this file. we can use these outdoor photos in conjuntion with 2nd index paramater on map. They are the same order as tripsData */
   const [slpashImages, setSplashImages] = useState(splashPhotos);
-
-  // unsplash API get
-  //Greg's api key for unsplash. rate limit 50 request/hr
-  const APIKey =
-    "87bd86fadbc47436e983dd82ec6c282a4d0a502f71262a7b9631d0ac0b204bca";
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=1&query=outdoors&per_page=50&client_id=${APIKey}`
-      )
-      .then(response => {
-        const results = response.data.results;
-
-        /* console.log("unsplash results", results); */
-        setTripsData(results);
-      })
-      .catch(error => {
-        console.log("Whoops from UserBrowsing.js", error);
-      });
-  }, []);
-
-  console.log("trips", tripsData);
 
   /* useEffect(() => {
 tripsData.map((trip, index) => {
@@ -54,6 +36,7 @@ tripsData.map((trip, index) => {
 }, []); */
 
   useEffect(() => {
+    console.log(`this is the problem`)
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/exp`)
       .then(res => {
@@ -65,7 +48,8 @@ tripsData.map((trip, index) => {
   // ^ for cards
 
   const handleChange = e => {
-    setSearch({...search, [e.target.name]: e.target.value});
+    // console.log(search)
+    setSearch({searchTerm: e.target.value});
   }
 
   const submitSearch = e => {
@@ -75,14 +59,17 @@ tripsData.map((trip, index) => {
     .then(res => {
       // console.log(res.data)
       res.data.map(item => {
-        // console.log(item)
-        console.log(`this is item.name`, JSON.stringify(item.name))
-        console.log(`this is search`, search.search)
-        var check = item.name.match(JSON.stringify(/Hike/gi))
+        // console.log(item) 
+        var re = new RegExp(search.searchTerm, 'gi');
+        console.log(`this is item.name`, item.name)
+        console.log(`this is search`, re)
+        var check = item.name.match(re)
         console.log(`this is check`, check)
         if (check) {
           console.log('found')
-          // props.history.push(`/search-results/${item.id}`)
+          setFoundItems(...foundItems, item)
+          console.log(foundItems)
+          props.history.push('/search-results')
         } else {
           console.log('not found')
         }
@@ -111,9 +98,19 @@ tripsData.map((trip, index) => {
 `;
   return (
     <>
+      <div className = "searchForm">
+        <form onSubmit = {submitSearch}>
+          <input
+              type = "text"
+              placeholder = "Search Experiences"
+              onChange = {(e) => handleChange(e)}
+              value = {search.searchTerm}
+              >
+            </input>
+          </form>
+      </div>
     <UserBrowsingWrapper>
-      <Header />
-
+     <Header />
       <BrowserCarousel />
       <BrowseAllListWrapper>
         <div>
@@ -130,15 +127,6 @@ tripsData.map((trip, index) => {
               location ={browse.location_id}
             />)
         })}
-        <form onSubmit = {submitSearch}>
-          <input
-            name = "search"
-            type = "text"
-            placeholder = "Search Experiences"
-            onChange = {handleChange}
-            >
-          </input>
-        </form>
       </div>
         <Route
           path="/user-browsing-page/browse-all-list/:id"
@@ -151,7 +139,7 @@ tripsData.map((trip, index) => {
           )}
         />
       </BrowseAllListWrapper>
-    </UserBrowsingWrapper>
+    </UserBrowsingWrapper> 
     </>
   );
 }
