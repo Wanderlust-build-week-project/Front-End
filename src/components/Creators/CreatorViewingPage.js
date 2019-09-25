@@ -3,13 +3,10 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import styled from 'styled-components';
-
 import Header from '../Header';
 import Card from './CreatorViewingCards';
 import './CVP.css';
-
 const CreatorViewingPage = (props) => {
-
   const [experiences, setExperiences] = useState([{
     id: "",
     name: "",
@@ -19,7 +16,6 @@ const CreatorViewingPage = (props) => {
     location_id: "",
     completed: ""
   }]);
-
   useEffect(() => {
     axiosWithAuth()
     .get(`https://wanderlustbw.herokuapp.com/exp/organizer/${localStorage.getItem('userID')}`)
@@ -31,7 +27,6 @@ const CreatorViewingPage = (props) => {
       console.log(error)
     });
   }, [])
-
   const reRender = () => {
   axiosWithAuth()
     .get(`https://wanderlustbw.herokuapp.com/exp/organizer/${localStorage.getItem('userID')}`)
@@ -43,7 +38,6 @@ const CreatorViewingPage = (props) => {
       console.log(error)
     });
   }
-
   const deleteExperience = (id) => {
     console.log("Experience to Delete ID", id)
     axiosWithAuth()
@@ -56,7 +50,6 @@ const CreatorViewingPage = (props) => {
     })
   .catch(err => console.log(err.response));
   }
-
   return (
     <>
       <Header />
@@ -84,5 +77,4 @@ const CreatorViewingPage = (props) => {
     </>
   );
 };
-
 export default CreatorViewingPage;
