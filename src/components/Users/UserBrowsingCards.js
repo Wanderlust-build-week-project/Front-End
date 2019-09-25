@@ -7,25 +7,20 @@ import {
 import Header from "../Header"
 
 const UserBrowsingCards = (props) => {
+    console.log (props)
+
     return (
         <div>
             <Header />
-             <Row>
-                <Col sm="6">
-                    <Card>
-                        <CardBody {...props.key}>
-                            <CardTitle>{props.title}</CardTitle>
-                            <CardSubtitle>{props.desc}</CardSubtitle>
-                            <CardText>{props.loc}</CardText>
-                            <CardText>{props.hours}</CardText>
-                            <CardText>{props.date}</CardText>
-                        </CardBody>
-                        <CardImg src={props.img} alt={props.title}/>
-                
-                    </Card>
-                </Col>
-            </Row>
-            
+            <Card>
+                <CardBody>
+                    <CardTitle>{props.title}</CardTitle>
+                    <CardSubtitle>{props.desc}</CardSubtitle>
+                    <CardText>{props.hours}</CardText>
+                    <CardText>{props.date}</CardText>
+                    <CardText>{props.location}</CardText>
+                </CardBody>       
+            </Card>
         </div>
     )
 }
