@@ -8,7 +8,7 @@ const UserSaved = (props) => {
             {props.list.map(thing => (
                 <span>{thing.title}</span>
             ))}
-            <Link to='/'>
+            <Link to="/general-landing-page">
                 <button>Save More Trips!</button>
             </Link>
         </div>
