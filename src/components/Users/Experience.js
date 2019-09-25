@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import {
-    Card, Button, CardHeader, CardBody,
-    CardTitle, CardText
-} from 'reactstrap';
+  Card,
+  Button,
+  CardHeader,
+  CardBody,
+  CardTitle,
+  CardText
+} from "reactstrap";
 
 const Experience = () => {
-    const [exprnc, setExprnc] = useState({})
+  /* const [exprnc, setExprnc] = useState({}); */
 
-    useEffect(() => {
+  /* useEffect(() => {
         const id = props.match.param.id;
         //need to set params from call 
         axiosWithAuth
@@ -22,28 +26,27 @@ const Experience = () => {
 
     }, [props.match.param.id])
 
-    const saveExpr = () => {
-        const addToSaved = props.addToSaved;
-        addToSaved(exprnc)
-    }
+  const saveExpr = () => {
+    const addToSaved = props.addToSaved;
+    addToSaved(exprnc);
+  };
 
-    if (!exprnc) {
-        return <div>Loading Trip information...</div>;
-    }
+  if (!exprnc) {
+    return <div>Loading Trip information...</div>;
+  } */
 
-    return (
-        <div>
-            <Card>
-                <CardHeader>Saved Trips!</CardHeader>
-                <CardBody>
-                    <CardTitle>{props.title}t</CardTitle>
-                    <CardText>{props.desc}</CardText>
-                    <Button onClick={props.exprnc}>Save This Trip</Button>
-                </CardBody>
-            </Card>
+  return (
+    <div>
+      <Card>
+        <CardHeader>Saved Trips!</CardHeader>
+        <CardBody>
+          <CardTitle>{props.title}t</CardTitle>
+          <CardText>{props.desc}</CardText>
+          <Button onClick={props.exprnc}>Save This Trip</Button>
+        </CardBody>
+      </Card>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Experience
+export default Experience;

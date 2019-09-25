@@ -9,8 +9,7 @@ import {
   CardLink,
   CardTitle,
   CardSubtitle,
-  Row,
-  Col
+  CardDeck
 } from "reactstrap";
 import styled from "styled-components";
 /* good going on the reactstrap cards, Cori. They look really nice :) */
@@ -45,6 +44,7 @@ const UserBrowsingCards = props => {
         console.log(error);
       });
   }, []);
+<<<<<<< HEAD
 
       return (
         <>
@@ -85,3 +85,26 @@ const UserBrowsingCards = props => {
 
 
 export default UserBrowsingCards
+=======
+  return (
+    <div>
+      <CardDeck>
+        <Card>
+          <Link to={`/user-browsing-page/browse-all-list/${props.id}`}>
+            <CardImg top width="100%" src={props.image} alt={props.title} />
+            <CardBody {...props.key}>
+              <CardTitle>{props.title}</CardTitle>
+              <CardSubtitle>{props.desc}</CardSubtitle>
+              <CardText>{place.place}</CardText>
+              <CardText>{props.hours}</CardText>
+              <CardText>{props.date}</CardText>
+              <CardText>{oranizer.oranizer}</CardText>
+            </CardBody>
+          </Link>
+        </Card>
+      </CardDeck>
+    </div>
+  );
+};
+export default UserBrowsingCards;
+>>>>>>> b0631859241473e7d85c4d6e247419bd6f37d237

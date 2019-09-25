@@ -7,6 +7,7 @@ function ContactForm() {
       <form action="https://formspree.io/gsc229@gmail.com" method="POST">
         <input type="text" name="name" />
         <input type="email" name="_replyto" />
+        <textarea type="text"></textarea>
         <input type="submit" value="Send" />
       </form>
     </div>
