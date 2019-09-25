@@ -106,7 +106,7 @@ const GeneralLandingPage = props => {
               </Button>
             </div>
             <div className="become-a-creator">
-              <h3>Wan't to host your own tour? </h3>
+              <h3>Want to host your own tour? </h3>
               <Button
                 onClick={() => props.history.push("/creator-viewing-page")}
               >

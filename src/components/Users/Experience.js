@@ -9,7 +9,7 @@ const Experience = () => {
 const [exprnc, setExprnc] = useState({})
 
 useEffect(() => {
-    const id = ;
+    const id = props.match.param.id;
     //need to set params from call 
     axiosWithAuth
     .get()
@@ -19,7 +19,7 @@ useEffect(() => {
     .catch(err => console.log(err)
     )
 
-}, [id.param])
+}, [props.match.param.id])
 
 const saveExpr = () => {
     const addToSaved = props.addToSaved;

@@ -52,7 +52,7 @@ const UserBrowsing = () => {
               desc={browse.description}
               date={browse.date}
               hours={browse.hours}
-              exprnc=(browse.browse)
+              exprnc={browse.browse}
             />)
         })}
       </div>
