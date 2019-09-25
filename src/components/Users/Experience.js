@@ -1,50 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import {
-    Card, CardImg, CardText, CardBody, CardLink,
-    CardTitle, CardSubtitle, Row, Col
+    Card, Button, CardHeader, CardBody,
+    CardTitle, CardText
 } from 'reactstrap';
 
 const Experience = () => {
-const [exprnc, setExprnc] = useState({})
+    const [exprnc, setExprnc] = useState({})
 
-useEffect(() => {
-    const id = props.match.param.id;
-    //need to set params from call 
-    axiosWithAuth
-    .get()
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => console.log(err)
-    )
+    useEffect(() => {
+        const id = props.match.param.id;
+        //need to set params from call 
+        axiosWithAuth
+            .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
+            .then(res => {
+                console.log(res)
+                setExprnc(res.data)
+            })
+            .catch(err => console.log(err)
+            )
 
-}, [props.match.param.id])
+    }, [props.match.param.id])
 
-const saveExpr = () => {
-    const addToSaved = props.addToSaved;
-    addToSaved(exprnc)
-}
+    const saveExpr = () => {
+        const addToSaved = props.addToSaved;
+        addToSaved(exprnc)
+    }
 
-
+    if (!exprnc) {
+        return <div>Loading Trip information...</div>;
+    }
 
     return (
         <div>
-            <Header />
-             <Row>
-                <Col sm="6">
-                    <Card>
-                        <CardBody {...props.key}>
-                            <CardTitle>{props.title}</CardTitle>
-                            <CardSubtitle>{props.desc}</CardSubtitle>
-                            <CardText>{props.hours}</CardText>
-                            <CardText>{props.date}</CardText>
-                        </CardBody>
-                        <CardImg src={props.img} alt={props.title}/>
-                        <div onClick={props.exprnc}>Save This Trip</div>
-                    </Card>
-                </Col>
-            </Row>
+            <Card>
+                <CardHeader>Saved Trips!</CardHeader>
+                <CardBody>
+                    <CardTitle>{props.title}t</CardTitle>
+                    <CardText>{props.desc}</CardText>
+                    <Button onClick={props.exprnc}>Save This Trip</Button>
+                </CardBody>
+            </Card>
+
         </div>
     )
 }

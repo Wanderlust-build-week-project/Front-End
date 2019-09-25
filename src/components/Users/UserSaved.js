@@ -5,8 +5,8 @@ const UserSaved = (props) => {
     return (
         <div>
             <h3>Saved Experiences</h3>
-            {props.list.map(thing => (
-                <span>{thing.title}</span>
+            {props.list.map(trip => (
+                <span>{trip.title}</span>
             ))}
             <Link to="/general-landing-page">
                 <button>Save More Trips!</button>
