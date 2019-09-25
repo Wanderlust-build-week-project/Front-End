@@ -1,13 +1,6 @@
 //this page will not be displayed but will take in data from the User Browsing page and return it as cards
-<<<<<<< HEAD
 import { Route, Link } from "react-router-dom";
 import React from 'react'
-=======
-import React, {useState, useEffect} from 'react'
-import axiosWithAuth from '../../utils/axiosWithAuth'
-import { Link } from "react-router-dom";
-
->>>>>>> 8b3f93ff74166b99f495f90416bf151c4ca1e89b
 import {
   Card,
   CardImg,
