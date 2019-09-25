@@ -75,25 +75,14 @@ const UserBrowsing = (props) => {
         <button>Check out All Experiences</button>
         {browser.map(browse => {
           return (
-<<<<<<< HEAD
             <UserBrowsingCards key={browse.id} 
               title={browse.title}
-=======
-            <UserBrowsingCards 
-              id = {browse.id}
->>>>>>> 8b3f93ff74166b99f495f90416bf151c4ca1e89b
               desc={browse.description}
               title={browse.name}
               hours={browse.duration}
               date={browse.date}
-<<<<<<< HEAD
               hours={browse.hours}
               exprnc={browse.browse}
-=======
-              completed ={browse.complted}
-              organizerID ={browse.organizer_id}
-              location ={browse.location_id}
->>>>>>> 8b3f93ff74166b99f495f90416bf151c4ca1e89b
             />)
         })}
         <form onSubmit = {submitSearch}>
