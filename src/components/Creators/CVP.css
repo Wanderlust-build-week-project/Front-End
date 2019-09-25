@@ -48,14 +48,23 @@ align-items: center;
 margin: 10px auto;
 }
 
+.name-loc {
+  display: flex;
+  /* justify-content: flex-start; */
+  align-items: flex-end;
+}
+
 .title {
 font-size: 2rem;
 font-weight: strong;
+margin: 0 5px 5px 0;
 }
 
 .location {
+font-style: italic;
 font-size: 1rem;
 font-weight: em;
+margin-left: 5px;
 }
 
 .icons {

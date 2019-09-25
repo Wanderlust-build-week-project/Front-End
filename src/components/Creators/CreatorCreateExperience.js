@@ -32,7 +32,12 @@ const CreatorCreateExperienceForm = (props) => {
   }
 
   function handleGeosuggestChange(value) {
-    const selectedPlace = value.description.split(',')[0];
+    let selectedPlace;
+    if(value.description.includes(",")) {
+    selectedPlace = value.description.split(',')[0];
+  } else {
+    selectedPlace = value.description;
+  }
     let exists = false;
 
     axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
@@ -77,7 +82,7 @@ const CreatorCreateExperienceForm = (props) => {
         console.log("New experience response:", res)
         props.history.push(`/creator-viewing-page`)
       })
-      .catch(err => console.log("Unable to submit experience.", err));
+      .catch(err => console.log("Unable to submit experience.", err.message));
   };
 
   return (

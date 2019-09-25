@@ -9,6 +9,17 @@ import './geosuggest.css';
 const locationPlaceholder = "location_id";
 const CreatorUpdateExperienceForm = (props) => {
 
+  const [location, setLocation] = useState("");
+  useEffect(() => {
+      axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/${props.location_id}`)
+      .then(response => {
+          setLocation(response.data.location)
+      })
+      .catch(error => {
+          console.log("Unable to fetch location name.", error)
+      })
+  }, []) 
+
   const dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1;
   var day = dateObj.getUTCDate();
@@ -28,10 +39,6 @@ const CreatorUpdateExperienceForm = (props) => {
     }
   );
 
-  const [place, setPlace] = useState({
-    place: ""
-  })
-
   useEffect(() => {
     var pathArray = window.location.pathname.split('/')
     // console.log(pathArray)
@@ -46,7 +53,7 @@ const CreatorUpdateExperienceForm = (props) => {
         .get(`https://wanderlustbw.herokuapp.com/locations/${response.data.location_id}`)
         .then(res => {
         console.log(`this is selected location`, res)
-        setPlace({place: res.data.location})
+        // setPlace({place: res.data.location})
         // console.log(`this is location`, location
         })
         .catch(error => {
@@ -63,7 +70,12 @@ const CreatorUpdateExperienceForm = (props) => {
   }
 
   function handleGeosuggestChange(value) {
-    const selectedPlace = value.description.split(',')[0];
+    let selectedPlace;
+    if(value.description.includes(",")) {
+    selectedPlace = value.description.split(',')[0];
+  } else {
+    selectedPlace = value.description;
+  }
     let exists = false;
 
     axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
@@ -151,11 +163,11 @@ const CreatorUpdateExperienceForm = (props) => {
             </div>
             <div className="column">
               <label className="label" htmlFor="location">Location: </label>
-              <Geosuggest onSuggestSelect={handleGeosuggestChange} />
+              <Geosuggest initialValue={location} onSuggestSelect={handleGeosuggestChange} />
             </div>
           </div>
           <span className="button-span">
-            <button className="create-btn" type="submit">Save</button>
+            <Link to="/creator-viewing-page"><button className="create-btn" type="submit">Save</button></Link>
             <Link to="/creator-viewing-page"><button className="create-btn">Return</button></Link>
           </span>
         </form>
