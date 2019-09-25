@@ -50,65 +50,42 @@ const UserBrowsingCards = (props) => {
             })
       }, [])
 
-<<<<<<< HEAD
-    return (
-        <div>
-            <Header />
-<<<<<<< HEAD
-             <Row>
-                <Col sm="6">
-                    <Card>
-                        <CardBody {...props.key}>
-                            <CardTitle>{props.title}</CardTitle>
-                            <CardSubtitle>{props.desc}</CardSubtitle>
-                            <CardText>{props.hours}</CardText>
-                            <CardText>{props.date}</CardText>
-                        </CardBody>
-                        <CardImg src={props.img} alt={props.title}/>
-                        <div onClick={props.exprnc}>Save This Trip</div>
-                        {/* <Link to ={`/experince/:id`} /> need to find the right rt */}
-                    </Card>
-                </Col>
-            </Row>
-            
-=======
-            <Card>
-                <CardBody>
-                    <CardTitle>Name: {props.title}</CardTitle>
-                    <CardSubtitle>Description: {props.desc}</CardSubtitle>
-                    <CardText>Duration: {props.hours} hours</CardText>
-                    <CardText>Date: {props.date}</CardText>
-                    <CardText>Organizer: {oranizer.oranizer}</CardText>
-                    <CardText>Location: {place.place}</CardText>
-                </CardBody>       
-            </Card>
->>>>>>> 8b3f93ff74166b99f495f90416bf151c4ca1e89b
-        </div>
-    )
-}
-=======
-return (
-  <div>
-    <Row>
-      <Col sm="6" lg="12">
-        <Link to={`/user-browsing-page/browse-all-list/${props.key}`}>
-          <Card>
-            <CardImg top width="100%" src={props.image} alt={props.title} />
-            <CardBody {...props.key}>
-              <CardTitle>{props.title}</CardTitle>
-              <CardSubtitle>{props.desc}</CardSubtitle>
-              <CardText>{place.place}</CardText>
-              <CardText>{props.hours}</CardText>
-              <CardText>{props.date}</CardText>
-              <CardText>{oranizer.oranizer}</CardText>
-            </CardBody>
-          </Card>
-        </Link>
-      </Col>
-    </Row>
-  </div>
-);
+      return (
+        <>
+        <UserBrowsingWrapper>
+         <Header />
+          <BrowserCarousel />
+          <BrowseAllListWrapper>
+            <div>
+            {browser.map(browse => {
+              return (
+                <UserBrowsingCards 
+                  id = {browse.id}
+                  desc={browse.description}
+                  title={browse.name}
+                  hours={browse.duration}
+                  date={browse.date}
+                  completed ={browse.complted}
+                  organizerID ={browse.organizer_id}
+                  location ={browse.location_id}
+                />)
+            })}
+          </div>
+            <Route
+              path="/user-browsing-page/browse-all-list/:id"
+              render={props => (
+                <UserExperience
+                  {...props}
+                  tripsData={tripsData}
+                  images={slpashImages}
+                />
+              )}
+            />
+          </BrowseAllListWrapper>
+        </UserBrowsingWrapper> 
+        </>
+      );
 };
->>>>>>> 61b038e6f066a27bd4c814f6c777d90650749fd0
+
 
 export default UserBrowsingCards
