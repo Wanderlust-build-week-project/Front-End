@@ -1,11 +1,39 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import styled from 'styled-components';
 
 import Header from '../Header';
 import './CVP.css';
 
 const CreatorUpdateExperienceForm = (props) => {
+
+  const Header = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  z-index: 2;
+  top: 0;
+  padding: 1vh 5vw;
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
+`;
+
+const NaviLink = styled.span`
+  text-decoration: none;
+  margin-left: 40px;
+`;
+
+const handleLogout = () => {
+  localStorage.removeItem("userID");
+  localStorage.removeItem("token");
+  return "";
+};
 
   const dateObj = new Date();
   var month = dateObj.getUTCMonth() + 1;
@@ -20,11 +48,15 @@ const CreatorUpdateExperienceForm = (props) => {
       name: "",
       description: "",
       date: "",
-      duration: 0,
-      location_id: 0,
+      duration: "",
+      location_id: "",
       completed: false
     }
   );
+
+  const [place, setPlace] = useState({
+    place: ""
+  })
 
   useEffect(() => {
     var pathArray = window.location.pathname.split('/')
@@ -33,9 +65,20 @@ const CreatorUpdateExperienceForm = (props) => {
     axiosWithAuth()
     .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
     .then(response => {
-      console.log(`this is on the update page`, response)
-      setExperience(response.data)
-    })
+      console.log(`this is on the update page`, response.data)
+        setExperience(response.data)
+        console.log(`running`)
+        axiosWithAuth()
+        .get(`https://wanderlustbw.herokuapp.com/locations/${response.data.location_id}`)
+        .then(res => {
+        console.log(`this is selected location`, res)
+        setPlace({place: res.data.location})
+        // console.log(`this is location`, location
+        })
+        .catch(error => {
+        console.log(error)
+        });
+        })
     .catch(error => {
       console.log(error)
     });
@@ -61,7 +104,30 @@ const CreatorUpdateExperienceForm = (props) => {
 
   return (
     <>
-      <Header/>
+      <Header>
+        <Title>Wanderlust</Title>
+        <nav className="gerneral-header-nav">
+          <NaviLink>
+            <Link className="header-link" to="/creator-landing-page">
+              Home
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/creator-viewing-page">
+              My Created Trips
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/experiences">
+              Experiences
+            </Link>
+          </NaviLink>
+
+          <NaviLink onClick={handleLogout}>
+            <Link to="/">Logout</Link>
+          </NaviLink>
+        </nav>
+      </Header>
       <div className="new-experience">
         <h2>Update This Experience</h2>
         <form className="new-experience-form" onSubmit = {handleUpdate}>
@@ -97,12 +163,12 @@ const CreatorUpdateExperienceForm = (props) => {
             </div>
             <div className="column">      
               <label className="label" for="location">Location: </label>
-              <input className="small-input"
-                type="number"
-                name="location"
-                value={experience.location_id}
-                onChange={handleChange}
-              />
+                <input className="small-input"
+                  type="text"
+                  name="place"
+                  value={place.place}
+                  onChange={handleChange}
+                />
             </div>
           </div>
           <span className="button-span">

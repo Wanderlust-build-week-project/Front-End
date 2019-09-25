@@ -2,12 +2,40 @@ import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
+import styled from 'styled-components';
 
 import Header from '../Header';
 import Card from './CreatorViewingCards';
 import './CVP.css';
 
 const CreatorViewingPage = (props) => {
+
+    const Header = styled.div`
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    z-index: 2;
+    top: 0;
+    padding: 1vh 5vw;
+  `;
+
+  const Title = styled.h2`
+    font-size: 2rem;
+  `;
+
+  const NaviLink = styled.span`
+    text-decoration: none;
+    margin-left: 40px;
+  `;
+
+  const handleLogout = () => {
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    return "";
+  };
 
   const [experiences, setExperiences] = useState([{
     id: "",
@@ -58,7 +86,30 @@ const CreatorViewingPage = (props) => {
 
   return (
     <>
-      <Header />
+      <Header>
+        <Title>Wanderlust</Title>
+        <nav className="gerneral-header-nav">
+          <NaviLink>
+            <Link className="header-link" to="/creator-landing-page">
+              Home
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/creator-viewing-page">
+              My Created Trips
+            </Link>
+          </NaviLink>
+          <NaviLink>
+            <Link className="header-link" to="/experiences">
+              Experiences
+            </Link>
+          </NaviLink>
+
+          <NaviLink onClick={handleLogout}>
+            <Link to="/">Logout</Link>
+          </NaviLink>
+        </nav>
+      </Header>
       <div className="titlebar">
         <span className="title">Your Experiences</span>
         <span><Link to="/choose-location"><button className="create-new">Create New</button></Link></span>
