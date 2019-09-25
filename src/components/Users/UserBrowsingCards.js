@@ -1,6 +1,8 @@
 //this page will not be displayed but will take in data from the User Browsing page and return it as cards
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axiosWithAuth from "../../utils/axiosWithAuth";
+
 import {
   Card,
   CardImg,

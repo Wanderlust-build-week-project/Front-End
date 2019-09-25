@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import axios from "axios";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import Header from "../Header";
@@ -139,8 +139,8 @@ const INITIAL_INDEX = 0;
   //^ for gallery state
 
   useEffect(() => {
-    axios
-      .get(`https://wanderlustbw.herokuapp.com/exp/experience/${index}`)
+    axiosWithAuth()
+      .get(`https://wanderlustbw.herokuapp.com/exp`)
       .then(res => {
         setBrowser(res);
         console.log(res);
@@ -151,7 +151,7 @@ const INITIAL_INDEX = 0;
 
   return (
     <>
-      <Gallery
+      {/* <Gallery
         index={index}
         onRequestChage={i => {
           setIndex(i);
@@ -162,7 +162,7 @@ const INITIAL_INDEX = 0;
         ))}
       </Gallery>
       <div>
-        <button>Check out All Experinces</button>
+        <button>Check out All Experiences</button>
         {browser.map(browse => {
           return (
             <div>
@@ -177,6 +177,15 @@ const INITIAL_INDEX = 0;
             </div>
           );
         })}
+        <form onSubmit = {submitSearch}>
+          <input
+            name = "search"
+            type = "text"
+            placeholder = "Search Experiences"
+            onChange = {handleChange}
+            >
+          </input>
+        </form>
       </div>
     </>
   );
