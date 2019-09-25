@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
+import unSplashData from "../../images/gerneral-landing-images/unSplashData"
+
+
 function BrowserCarousel() {
   const INITIAL_INDEX = 0;
-  const images = [
-    "https://picsum.photos/id/1020/300/300",
-    "https://picsum.photos/id/1001/300/300",
-    "https://picsum.photos/id/1005/300/300",
-    "https://picsum.photos/id/1023/300/300"
-  ];
-  const [browsers, setBrowsers] = useState([{}]);
+ 
+  const [images, setImages] = useState([])
   const [index, setIndex] = useState(INITIAL_INDEX);
+
+setImages(unSplashData)
 
   useEffect(() => {
     const interval =
@@ -30,9 +30,8 @@ function BrowserCarousel() {
     <Gallery
       index={index}
       onRequestChage={i => {
-        setIndex(i);
-      }}
-    >
+        setIndex(i + 1);
+      }}>
       {images.map(image => (
         <GalleryImage objectFit="contain" src={image} />
       ))}
