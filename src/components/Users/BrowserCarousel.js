@@ -10,7 +10,7 @@ function BrowserCarousel() {
   const [images, setImages] = useState([])
   const [index, setIndex] = useState(INITIAL_INDEX);
 
-setImages(unSplashData)
+// setImages(unSplashData)
 
   useEffect(() => {
     const interval =
@@ -23,8 +23,8 @@ setImages(unSplashData)
       },
       2500);
     return () => clearInterval(interval);
-  }, [index]);
-  //^ for gallery state
+  }, []);
+//   ^ for gallery state
 
   return (
     <Gallery
