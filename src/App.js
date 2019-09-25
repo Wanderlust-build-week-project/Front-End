@@ -20,10 +20,9 @@ function App() {
       <div className="App">
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
-        {/* <PrivateRoute exact path="/general-landing-page" component={GeneralLandingPage}/> */}
         <Route path="/general-landing-page" component={GeneralLandingPage} />
         <Route path="/creator-landing-page" component={CreatorLandingPage} />
-        <Route exact path="/user-browsing-page" component={UserBrowsingPage} />
+        <Route path="/user-browsing-page" component={UserBrowsingPage} />
         <Route
           exact
           path="/creator-viewing-page"
