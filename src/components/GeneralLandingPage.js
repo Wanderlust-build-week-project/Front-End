@@ -40,12 +40,10 @@ const Today = styled.h3`
   color: white;
 `;
 
-const Footer = styled.div`
-margin-top: 200px;
-`
 /* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
+  console.log(props)
 
   const [experiences, setExperiences] = useState();
 
@@ -77,7 +75,7 @@ const GeneralLandingPage = props => {
             <div className="become-a-creator">
               <h3>Want to host your own tour? </h3>
               <Button
-                onClick={() => props.history.push("/creator-viewing-page")}
+                onClick={() => props.history.push("/")}
               >
                 Become a Trip Creator
               </Button>
@@ -85,10 +83,9 @@ const GeneralLandingPage = props => {
           </div>
         </div>
       </GeneralLanding>
-      <Footer>
-        <UserSaved />
+      <div>
         <Experience />
-      </Footer>
+      </div>
       
     </>
   );

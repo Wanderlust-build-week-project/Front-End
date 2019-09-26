@@ -20,6 +20,7 @@ const UserSaved = (props) => {
 
     return (
         <div>
+
             <Card>
                 <h3>Saved Trips!</h3>
                 <CardTitle></CardTitle>
@@ -27,6 +28,8 @@ const UserSaved = (props) => {
                     <Butn>Save More Trips!</Butn>
                 </Link>
             </Card>
+                
+                   
         </div>
 
     )

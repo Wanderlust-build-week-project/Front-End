@@ -8,10 +8,10 @@ const Experience = (props) => {
   useEffect(() => {
     //   console.log(props.organizerID)
     axiosWithAuth()
-      .get(`https://wanderlustbw.herokuapp.com/organizers/${props.organizerID}`)
+      .get(`https://wanderlustbw.herokuapp.com/exp/experience/1`)
       .then(response => {
-        // console.log(`these are the organizers`, response)
-        setExprnc({ experience: response.data.name });
+        console.log(`EXPRNC`, response)
+        setExprnc(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -23,14 +23,13 @@ const Experience = (props) => {
   //   addToSaved(exprnc);
   // };
 
-  // if (!exprnc) {
-  //   return <div>Loading Trip information...</div>;
-  // }
-
 
   return (
     <div>
-      <UserSaved />
+      {exprnc.map(saved => (
+        <UserSaved
+      ))}
+     
     </div>
   );
 };
