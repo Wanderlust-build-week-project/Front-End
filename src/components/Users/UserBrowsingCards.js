@@ -2,7 +2,7 @@
 //this page will not be displayed but will take in data from the User Browsing page and return it as cards
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Route, Link } from "react-router-dom";
+import { NavLink, Link, Route } from "react-router-dom";
 import UserExperience from "./UserExperience";
 import {
   Card,
@@ -61,7 +61,7 @@ const UserBrowsingCards = props => {
               <CardText>{props.hours}</CardText>
               <CardText>{props.date}</CardText>
               <CardText>{oranizer.oranizer}</CardText>
-              <Button>Save This Trip!</Button>
+              <Button  onClick={() => props.history.push("/user-saved-list")}>Save This Trip!</Button>
             </CardBody>
           </Link>
         </Card>
