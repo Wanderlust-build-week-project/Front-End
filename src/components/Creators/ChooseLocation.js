@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import {Link} from 'react-router-dom';
-import Header from '../Header';
+import Header from './CreatorHeader.js';
 import './CVP.css';
 
 

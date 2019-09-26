@@ -20,8 +20,8 @@ function BrowserCarousel() {
       },
       2500);
     return () => clearInterval(interval);
-  }, [index]);
-  //^ for gallery state
+  }, []);
+//   ^ for gallery state
 
   return (
     <Gallery

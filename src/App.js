@@ -10,6 +10,7 @@ import CreatorCreateExperienceForm from "./components/Creators/CreatorCreateExpe
 import CreatorUpdateExperienceForm from "./components/Creators/CeatorUpdateExperience";
 import ChooseLocation from './components/Creators/ChooseLocation';
 import SearchResults from './components/Users/SearchResults';
+import PrivateRoute from './components/PrivateRoute';
 
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -20,27 +21,27 @@ function App() {
       <div className="App">
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
-        <Route path="/general-landing-page" component={GeneralLandingPage} />
-        <Route path="/creator-landing-page" component={CreatorLandingPage} />
-        <Route path="/user-browsing-page" component={UserBrowsingPage} />
-        <Route
+        <PrivateRoute path="/general-landing-page" component={GeneralLandingPage} />
+        <PrivateRoute path="/creator-landing-page" component={CreatorLandingPage} />
+        <PrivateRoute path="/user-browsing-page" component={UserBrowsingPage} />
+        <PrivateRoute
           exact
           path="/creator-viewing-page"
           component={CreatorViewingPage}
         />
-        <Route
+        <PrivateRoute
           path="/creator-create-experience-form"
           component={CreatorCreateExperienceForm}
         />
-        <Route
+        <PrivateRoute
           path="/creator-update-experience-form"
           component={CreatorUpdateExperienceForm}
         />
-         <Route
+         <PrivateRoute
           path="/choose-location"
           component={ChooseLocation}
         />
-        <Route
+        <PrivateRoute
           path="/search-results"
           component={SearchResults}
         />
