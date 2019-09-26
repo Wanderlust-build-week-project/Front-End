@@ -6,13 +6,12 @@ import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { Search } from "semantic-ui-react";
 import { AnimatedProps } from "@react-spring/animated";
 import { Route } from "react-router-dom";
-import Header from "../Header";
 import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
 import './UserBrowsing.css';
-import SearchResults from './SearchResults'
+import Header from "./UserHeader";
 
 const UserBrowsing = props => {
   const [browser, setBrowser] = useState([]);
