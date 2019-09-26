@@ -27,63 +27,69 @@ const CreatorCreateExperienceForm = (props) => {
     }
   );
 
+  const [place, setPlace] = useState("");
+ 
   const handleChange = e => {
     setExperience({...experience, [e.target.name]: e.target.value});
   }
 
-  function handleGeosuggestChange(value) {
-    let selectedPlace;
-    if(value.description.includes(",")) {
-    selectedPlace = value.description.split(',')[0];
-  } else {
-    selectedPlace = value.description;
+  function handleGeosuggestChange(suggest) {
+    console.log(suggest);
+    let arr = suggest.description.split(',');
+    console.log(arr[0]);
+    setPlace(arr[0]);
   }
-    let exists = false;
 
-    axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
-    .then(response => {
+   const submitNewExperience = event => {
+    event.preventDefault();
+
+    axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${place}`)
+    .then(async response => {
       if (response.data.id > 0) {
-        exists = true;
-        console.log("Does", selectedPlace , "exist in the database?", exists, ". id:", response.data.id)
-        setExperience({...experience, [locationPlaceholder]: response.data.id});
+        var grabbedID = response.data.id;
+        console.log("grabbed id:", grabbedID)
+        let newExperience = {...experience};
+        newExperience.location_id = grabbedID;
+        // await setExperience(newExperience);
+        submitFinal(newExperience);
       } else {
-          exists = false;
-          console.log("Does ", selectedPlace," exist?", exists)
-          console.log(`This is a new location:`, selectedPlace)
-          const place = {"location": selectedPlace}
+          console.log("Does ", place," exist?", false)
+          console.log(`This is a new location:`, place)
+          const placeObject = {"location": place}
           axiosWithAuth()
-          .post(`https://wanderlustbw.herokuapp.com/locations`, place)
+          .post(`https://wanderlustbw.herokuapp.com/locations`, placeObject)
           .then(response => {
             console.log(`Location added.`, response)
-            axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${selectedPlace}`)
-            .then(response=> {
-              setExperience({...experience, [locationPlaceholder]: response.data.id});
-            })
-            .catch(error => {
-              console.log("Unable to fetch location after add.", error)
-            })
+            console.log("grabbed id:", response.data.id)
+            submitFinal(response.data.id);
           })
           .catch(error => {
             console.log("Unable to add location.", error)
           });
-      }
-    })
+          
+      }})
     .catch(error => {
       console.log("Error accessing location database.", error)
     })
   }
 
-  const submitNewExperience = event => {
-    event.preventDefault();
-    console.log(`Creating new experience:`, experience)
+  function submitFinal(exp) {
+    // console.log(experience.location_id);
+    // console.log(loc_id);
+    console.log(`Creating new experience:`, exp)
     axiosWithAuth()
-      .post('https://wanderlustbw.herokuapp.com/exp', experience)
+      .post('https://wanderlustbw.herokuapp.com/exp', exp)
       .then(res => {
         console.log("New experience response:", res)
         props.history.push(`/creator-viewing-page`)
       })
       .catch(err => console.log("Unable to submit experience.", err, experience));
-  };
+  }
+
+  async function something(id) {
+    await setExperience({...experience, location_id: id});
+    
+  }
 
   return (
     <>
@@ -123,7 +129,7 @@ const CreatorCreateExperienceForm = (props) => {
             </div>
             <div className="column">
               <label className="label" htmlFor="location">Location: </label>
-              <Geosuggest onSuggestSelect={handleGeosuggestChange}/>
+              <Geosuggest onSuggestSelect={handleGeosuggestChange} />
             </div>
           </div>
           <span className="button-span">
