@@ -15,8 +15,12 @@ const SearchResults = (props) => {
     useEffect(() => {
         // var pathArray = window.location.pathname.split('/')
         // var id = pathArray[pathArray.length -1]
-        axiosWithAuth()
-        .get(`https://wanderlustbw.herokuapp.com/exp/experience/${props.foundItems}`)
+        var retrieve = localStorage.getItem("SearchResults");
+        var IDs = JSON.parse(retrieve);
+
+        IDs.map(id => {
+          axiosWithAuth()
+        .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
         .then(response => {
           console.log(`this is on the Search Outcome page`, response.data)
             setSearchOutcome(response.data)
@@ -42,6 +46,7 @@ const SearchResults = (props) => {
         .catch(error => {
           console.log(error)
         });
+        })  
       }, [])
 
   return (
