@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
-import UserBrowsingCards from './Users/UserBrowsingCards';
+import { Link } from "react-router-dom";
+import './UserHeader.css';
 
 export default function Header() {
 
@@ -12,30 +12,31 @@ export default function Header() {
 
   return (
     <>
-      <div className="header">
-        <Link to="/user-landing-page"><h2 className="title">Wanderlust</h2></Link>
-        <nav className="general-header-nav">
+      <span className="header">
+        <span>
+          <img className="logo" src={ require ('../Creators/logo.png') } /><Link to="/general-landing-page"><h2 className="title underline">Wanderlust</h2></Link>
+        </span>
+        <nav>
           <span className="link">
-            <Link className="header-link" to="/creator-viewing-page">
-              My Created Trips
+            <Link className="header-link underline" to="/user-browsing-page">
+              My Trip History
             </Link>
           </span>
           <span className="link">
-            <Link className="header-link" to="/experiences">
+            <Link className="header-link underline" to="/user-browsing-page">
               Experiences
             </Link>
           </span>
           <span className="link">
-            <Link className="header-link" to="https://epic-minsky-812a3d.netlify.com/index.html">
+            <a className="header-link underline" href="https://epic-minsky-812a3d.netlify.com/index.html">
               Marketing
-            </Link>
+            </a>
           </span>
           <span className="link" onClick={handleLogout}>
-            <Link to="/login">Logout</Link>
+            <Link className="header-link underline" to="/login">Logout</Link>
           </span>
-          <Route path="/experiences" component={UserBrowsingCards} />
         </nav>
-      </div>
+      </span>
     </>
   );
 }
