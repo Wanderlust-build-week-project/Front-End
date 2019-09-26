@@ -82,7 +82,8 @@ const SearchResults = (props) => {
   } else {
     return (
       <div>
-        ...Loading
+        <h1>Sorry no Trips were found matching that Description</h1>
+        <button onClick = {()=> {props.history.push('/user-browsing-page')}}>Return to browsing</button>
       </div>
     )
   }
