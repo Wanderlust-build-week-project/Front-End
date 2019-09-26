@@ -6,8 +6,8 @@ import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 import UserSaved from "../components/Users/UserSaved";
-import Experience from "./Users/Experience"
-import Header  from "./Header"
+import Experience from "./Users/Experience";
+import Header from "../components/Users/UserHeader";
 
 /* ===== styled components ======= */
 
@@ -43,7 +43,7 @@ const Today = styled.h3`
 /* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
-  console.log(props)
+  console.log(props);
 
   const [experiences, setExperiences] = useState();
 
@@ -74,9 +74,7 @@ const GeneralLandingPage = props => {
             </div>
             <div className="become-a-creator">
               <h3>Want to host your own tour? </h3>
-              <Button
-                onClick={() => props.history.push("/")}
-              >
+              <Button onClick={() => props.history.push("/")}>
                 Become a Trip Creator
               </Button>
             </div>
@@ -86,7 +84,6 @@ const GeneralLandingPage = props => {
       <div>
         <Experience />
       </div>
-      
     </>
   );
 };
@@ -101,10 +98,9 @@ function FeaturedTrips() {
           <h3>Adventure: {trip.name}</h3>
           <img src={trip.image_url} alt="" />
           <Link to="user-browsing-page">
-          <button className="learn-more">Learn More</button>
+            <button className="learn-more">Learn More</button>
           </Link>
         </div>
-       
       ))}
     </div>
   );
