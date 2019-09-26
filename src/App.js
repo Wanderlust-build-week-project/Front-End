@@ -21,8 +21,8 @@ function App() {
       <div className="App">
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute path="/general-landing-page" component={GeneralLandingPage} />
-        <PrivateRoute path="/creator-landing-page" component={CreatorLandingPage} />
+        <Route path="/general-landing-page" component={GeneralLandingPage} />
+        <Route path="/creator-landing-page" component={CreatorLandingPage} />
         <Route path="/user-browsing-page" component={UserBrowsingPage} />
         <Route
           exact
