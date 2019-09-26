@@ -20,6 +20,7 @@ const UserBrowsing = props => {
     searchTerm: ""
   })
   const [foundItems, setFoundItems] = useState([])
+  var idArray = []
   /* will do get requests for organizers and experiences to set these states below
    working on this at night, currently not able to axiosWithAuth, will troubleshoot with backend tomorrow 
  */
@@ -90,14 +91,16 @@ tripsData.map((trip, index) => {
         // console.log(`this is check`, check)
         if (check) {
           var id = item.id 
-          setFoundItems({...foundItems, id})
-          console.log(`found`, id)
+          // setFoundItems({...foundItems, id})
+          idArray.push(id)
+          console.log(`found`, idArray)
         } else {
           console.log('not found')
         }
       }).then(
         console.log(foundItems),
-        localStorage.setItem("SearchResults", JSON.stringify(foundItems))
+        localStorage.setItem("SearchResults", JSON.stringify(idArray)),
+        props.history.push("/search-results")
       )
   })
   .catch(err => console.log("Loading Error Experinces", err));
