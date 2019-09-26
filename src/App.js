@@ -8,9 +8,9 @@ import UserBrowsingPage from "./components/Users/UserBrowsing";
 import CreatorViewingPage from "./components/Creators/CreatorViewingPage";
 import CreatorCreateExperienceForm from "./components/Creators/CreatorCreateExperience";
 import CreatorUpdateExperienceForm from "./components/Creators/CeatorUpdateExperience";
-import ChooseLocation from './components/Creators/ChooseLocation';
-import SearchResults from './components/Users/SearchResults';
-import PrivateRoute from './components/PrivateRoute';
+import ChooseLocation from "./components/Creators/ChooseLocation";
+import SearchResults from "./components/Users/SearchResults";
+import PrivateRoute from "./components/PrivateRoute";
 
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -21,8 +21,14 @@ function App() {
       <div className="App">
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute path="/general-landing-page" component={GeneralLandingPage} />
-        <PrivateRoute path="/creator-landing-page" component={CreatorLandingPage} />
+        <PrivateRoute
+          path="/general-landing-page"
+          component={GeneralLandingPage}
+        />
+        <PrivateRoute
+          path="/creator-landing-page"
+          component={CreatorLandingPage}
+        />
         <PrivateRoute path="/user-browsing-page" component={UserBrowsingPage} />
         <PrivateRoute
           exact
@@ -37,14 +43,8 @@ function App() {
           path="/creator-update-experience-form"
           component={CreatorUpdateExperienceForm}
         />
-         <PrivateRoute
-          path="/choose-location"
-          component={ChooseLocation}
-        />
-        <PrivateRoute
-          path="/search-results"
-          component={SearchResults}
-        />
+        <PrivateRoute path="/choose-location" component={ChooseLocation} />
+        <PrivateRoute path="/search-results" component={SearchResults} />
       </div>
     </Router>
   );
