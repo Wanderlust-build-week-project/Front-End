@@ -4,14 +4,19 @@ import UserSaved from "./UserSaved"
 
 const Experience = (props) => {
   const [exprnc, setExprnc] = useState([{}]);
+  const [id, setId] = useState()
+  const [name, setName] = useState("")
+
 
   useEffect(() => {
     //   console.log(props.organizerID)
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/exp/experience/1`)
       .then(response => {
-        console.log(`EXPRNC`, response)
+        console.log(`EXPRNC`, response.data)
         setExprnc(response.data);
+        setId(response.data.id)
+        setName(response.data.name)
       })
       .catch(error => {
         console.log(error);
@@ -26,8 +31,8 @@ const Experience = (props) => {
 
   return (
     <div>
-     
-     
+         <UserSaved id={1} name={name}/>
+    
     </div>
   );
 };

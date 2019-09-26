@@ -21,9 +21,9 @@ const UserSaved = (props) => {
     return (
         <div>
 
-            <Card>
+            <Card id={props.id}>
                 <h3>Saved Trips!</h3>
-                <CardTitle></CardTitle>
+                <CardTitle>{props.name}</CardTitle>
                 <Link to="/general-landing-page">
                     <Butn>Save More Trips!</Butn>
                 </Link>
