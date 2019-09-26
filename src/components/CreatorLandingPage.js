@@ -5,22 +5,9 @@ import "./CreatorLandingPage.css";
 import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
-/* ===== styled components ======= */
-const Header = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  height: fit-content;
-  z-index: 2;
-  top: 0;
-  padding: 1vh 5vw;
-`;
+import Header from './Creators/CreatorHeader.js';
 
-const Title = styled.h2`
-  font-size: 2rem;
-`;
+/* ===== styled components ======= */
 
 const Button = styled.button`
   padding: 5px 40px;
@@ -47,21 +34,12 @@ const CreatorLanding = styled.div`
   background: rgba(0, 0, 0, 0.5);
   color: white;
 `;
-
-const NaviLink = styled.span`
-  text-decoration: none;
-  margin-left: 40px;
-`;
 /* ====== COMPONENT =======  */
 const CreatorLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
 
   const [experiences, setExperiences] = useState();
-  const handleLogout = () => {
-    localStorage.removeItem("userID");
-    localStorage.removeItem("token");
-    return "";
-  };
+  
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
     setExperiences(data);
@@ -71,26 +49,7 @@ const CreatorLandingPage = props => {
   /* ======= RETURN =========  */
   return (
     <>
-      <Header>
-        <Title>Wanderlust</Title>
-        <nav className="gerneral-header-nav">
-          <NaviLink>
-            <Link className="header-link" to="/creator-viewing-page">
-              My Created Trips
-            </Link>
-          </NaviLink>
-          <NaviLink>
-            <Link className="header-link" to="user-browsing-page">
-              Experiences
-            </Link>
-          </NaviLink>
-
-          <NaviLink onClick={handleLogout}>
-            <Link to="/">Logout</Link>
-          </NaviLink>
-          <Route path="/experiences" component={UserBrowsingCards} />
-        </nav>
-      </Header>
+      <Header/>
       <CreatorLanding>
         <div className="create-or-find">
           <div className="create-btn-container">

@@ -6,15 +6,20 @@ import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { Search } from "semantic-ui-react";
 import { AnimatedProps } from "@react-spring/animated";
 import { Route } from "react-router-dom";
-import Header from "../Header";
 import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
+import './UserBrowsing.css';
+import Header from "./UserHeader";
 
 const UserBrowsing = props => {
   const [browser, setBrowser] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState({
+    searchTerm: ""
+  })
+  const [foundItems, setFoundItems] = useState([])
+  var idArray = []
   /* will do get requests for organizers and experiences to set these states below
    working on this at night, currently not able to axiosWithAuth, will troubleshoot with backend tomorrow 
  */
@@ -65,31 +70,40 @@ tripsData.map((trip, index) => {
   // ^ for cards
 
   const handleChange = e => {
-    setSearch({ ...search, [e.target.name]: e.target.value });
-  };
+    // console.log(search)
+    setSearch({searchTerm: e.target.value});
+  }
 
   const submitSearch = e => {
+    localStorage.setItem("SearchResults", "")
     e.preventDefault();
     axiosWithAuth()
-      .get(`https://wanderlustbw.herokuapp.com/exp`)
-      .then(res => {
-        // console.log(res.data)
-        res.data.map(item => {
-          // console.log(item)
-          console.log(`this is item.name`, JSON.stringify(item.name));
-          console.log(`this is search`, search.search);
-          var check = item.name.match(JSON.stringify(/Hike/gi));
-          console.log(`this is check`, check);
-          if (check) {
-            console.log("found");
-            // props.history.push(`/search-results/${item.id}`)
-          } else {
-            console.log("not found");
-          }
-        });
-      })
-      .catch(err => console.log("Loading Error Experinces", err));
-  };
+    .get(`https://wanderlustbw.herokuapp.com/exp`)
+    .then(res => {
+      console.log(`this is res.data`, res.data)
+      res.data.map(item => {
+        // console.log(item) 
+        var re = new RegExp(search.searchTerm, 'gi');
+        console.log(`this is item.name`, item.name)
+        console.log(`this is search`, re)
+        var check = item.name.match(re)
+        // console.log(`this is check`, check)
+        if (check) {
+          var id = item.id 
+          // setFoundItems({...foundItems, id})
+          idArray.push(id)
+          console.log(`found`, idArray)
+        } else {
+          console.log('not found')
+        }
+      }).then(
+        console.log(foundItems),
+        localStorage.setItem("SearchResults", JSON.stringify(idArray)),
+        props.history.push("/search-results")
+      )
+  })
+  .catch(err => console.log("Loading Error Experinces", err));
+}
 
   const UserBrowsingWrapper = styled.div`
     position: relative;
@@ -113,9 +127,20 @@ tripsData.map((trip, index) => {
   `;
   return (
     <>
+    <div className = "searchForm">
+      <form onSubmit={submitSearch}>
+        <input
+          type="text"
+          placeholder="Search Experiences"
+          onChange = {(e) => handleChange(e)}
+          value = {search.searchTerm}
+        ></input>
+      </form>
+    </div>
       <Header />
       <UserBrowsingWrapper>
         <BrowserCarousel />
+<<<<<<< HEAD
         <form onSubmit={submitSearch}>
           <input
             name="search"
@@ -124,6 +149,8 @@ tripsData.map((trip, index) => {
             onChange={handleChange}
           ></input>
         </form>
+=======
+>>>>>>> ca9a7376aa6549c84b0a7af4b53a9486c4a3cc3e
         <BrowseAllListWrapper>
           {browser.map(browse => {
             return (

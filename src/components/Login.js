@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom';
 import axios from "axios";
 
 import Header from "./Header";
@@ -90,9 +91,10 @@ const Login = props => {
             onChange={handleChange}
           />
           <div id="checkIfOrganizerLogin" className="are-you">
-            <label htmlFor="creator">Are you an Organizer?</label>
+            <label htmlFor="creator">Are you an Organizer? </label>
             <input type="checkbox" id="creator" name="creatorCheckbox" />
           </div>
+          <Link to="/">Don't have an account?</Link>
           <button className="btn">Log in</button>
         </form>
       </div>

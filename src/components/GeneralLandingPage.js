@@ -6,24 +6,13 @@ import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 import UserSaved from "../components/Users/UserSaved";
+<<<<<<< HEAD
 import Experience from "./Users/Experience"
+=======
+import Header from './Users/UserHeader';
+>>>>>>> ca9a7376aa6549c84b0a7af4b53a9486c4a3cc3e
 
 /* ===== styled components ======= */
-const Header = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  height: fit-content;
-  z-index: 2;
-  top: 0;
-  padding: 1vh 5vw;
-`;
-
-const Title = styled.h2`
-  font-size: 2rem;
-`;
 
 const Button = styled.button`
   padding: 5px 40px;
@@ -49,9 +38,9 @@ const GeneralLanding = styled.div`
   color: white;
 `;
 
-const NaviLink = styled.span`
-  text-decoration: none;
-  margin-left: 40px;
+const Today = styled.h3`
+  font-size: 2rem;
+  color: white;
 `;
 
 const Footer = styled.div`
@@ -62,11 +51,7 @@ const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
 
   const [experiences, setExperiences] = useState();
-  const handleLogout = () => {
-    localStorage.removeItem("userID");
-    localStorage.removeItem("token");
-    return "";
-  };
+  
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
     setExperiences(data);
@@ -76,31 +61,11 @@ const GeneralLandingPage = props => {
   /* ======= RETURN =========  */
   return (
     <>
-      <Header>
-        <Title>Wanderlust</Title>
-        <nav className="gerneral-header-nav">
-          <NaviLink>
-            <Link className="header-link" to="/user-browsing-page">
-              My Trip History
-            </Link>
-          </NaviLink>
-
-          <NaviLink>
-            <Link className="header-link" to="/user-browsing-page">
-              Experiences
-            </Link>
-          </NaviLink>
-
-          <NaviLink onClick={handleLogout}>
-            <Link to="/">Logout</Link>
-          </NaviLink>
-          <Route path="/experiences" component={UserBrowsingCards} />
-        </nav>
-      </Header>
+      <Header/>
       <GeneralLanding>
         <div className="create-or-find">
           <div className="featured-experiences">
-            <h2>Todya's Featured Experiences:</h2>
+            <Today>Today's Featured Experiences:</Today>
             <div>
               <FeaturedTrips />
             </div>
