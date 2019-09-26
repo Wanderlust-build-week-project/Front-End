@@ -1,50 +1,31 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import {
-  Card,
-  Button,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  CardText
-} from "reactstrap";
+import UserSaved from "./UserSaved"
 
-const Experience = () => {
-  /* const [exprnc, setExprnc] = useState({}); */
+const Experience = (props) => {
+  
+  const [id, setId] = useState()
+  const [name, setName] = useState("")
 
-  /* useEffect(() => {
-        const id = props.match.param.id;
-        //need to set params from call 
-        axiosWithAuth
-            .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
-            .then(res => {
-                console.log(res)
-                setExprnc(res.data)
-            })
-            .catch(err => console.log(err)
-            )
 
-    }, [props.match.param.id])
-
-  const saveExpr = () => {
-    const addToSaved = props.addToSaved;
-    addToSaved(exprnc);
-  };
-
-  if (!exprnc) {
-    return <div>Loading Trip information...</div>;
-  } */
+  useEffect(() => {
+    //   console.log(props.organizerID)
+    axiosWithAuth()
+      .get(`https://wanderlustbw.herokuapp.com/exp/experience/1`)
+      .then(response => {
+        console.log(`EXPRNC`, response.data)
+        setId(response.data.id)
+        setName(response.data.name)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div>
-      <Card>
-        <CardHeader>Saved Trips!</CardHeader>
-        <CardBody>
-          <CardTitle>{props.title}t</CardTitle>
-          <CardText>{props.desc}</CardText>
-          <Button onClick={props.exprnc}>Save This Trip</Button>
-        </CardBody>
-      </Card>
+         <UserSaved id={id} name={name}/>
+    
     </div>
   );
 };

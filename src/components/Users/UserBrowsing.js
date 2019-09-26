@@ -57,12 +57,14 @@ tripsData.map((trip, index) => {
   console.log("splash: ", slpashImages);
 });
 }, []); */
-
+const [exprnc, setExprnc] = useState([{}]);
+  
   useEffect(() => {
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/exp`)
       .then(res => {
         setBrowser(res.data);
+        setExprnc(res.data.id, res.data.name)
         // console.log(res)
       })
       .catch(err => console.log("Loading Error Experinces", err));
@@ -125,6 +127,8 @@ tripsData.map((trip, index) => {
       0 2px 4px rgba(0, 0, 0, 0.24);
   `;
 
+
+  
   return (
     <>
     <div className = "searchForm">
@@ -140,6 +144,14 @@ tripsData.map((trip, index) => {
       <Header />
       <UserBrowsingWrapper>
         <BrowserCarousel />
+        <form onSubmit={submitSearch}>
+          <input
+            name="search"
+            type="text"
+            placeholder="Search Experiences"
+            onChange={handleChange}
+          ></input>
+        </form>
         <BrowseAllListWrapper>
           {browser.map(browse => {
             return (
@@ -154,6 +166,7 @@ tripsData.map((trip, index) => {
                   organizerID={browse.organizer_id}
                   location={browse.location_id}
                   image={splashPhotos[browse.id]}
+                  exprnc={exprnc}
                 />
               </div>
             );
@@ -163,5 +176,5 @@ tripsData.map((trip, index) => {
     </>
   );
 };
-
 export default UserBrowsing;
+  

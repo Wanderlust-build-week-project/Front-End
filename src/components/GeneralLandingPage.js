@@ -6,7 +6,8 @@ import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 import UserSaved from "../components/Users/UserSaved";
-import Header from "./Users/UserHeader";
+import Experience from "./Users/Experience"
+import Header  from "./Header"
 
 /* ===== styled components ======= */
 
@@ -38,6 +39,7 @@ const Today = styled.h3`
   font-size: 2rem;
   color: white;
 `;
+
 /* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
@@ -81,7 +83,10 @@ const GeneralLandingPage = props => {
           </div>
         </div>
       </GeneralLanding>
-      {/*  <UserSaved /> */}
+      <div>
+        <Experience />
+      </div>
+      
     </>
   );
 };
@@ -95,8 +100,11 @@ function FeaturedTrips() {
         <div className="trip-card" key={trip.id}>
           <h3>Adventure: {trip.name}</h3>
           <img src={trip.image_url} alt="" />
+          <Link to="user-browsing-page">
           <button className="learn-more">Learn More</button>
+          </Link>
         </div>
+       
       ))}
     </div>
   );
