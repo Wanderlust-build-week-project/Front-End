@@ -61,7 +61,9 @@ const UserBrowsingCards = props => {
               <CardText>{props.hours}</CardText>
               <CardText>{props.date}</CardText>
               <CardText>{oranizer.oranizer}</CardText>
-              <Button  onClick={() => props.history.push("/user-saved-list")}>Save This Trip!</Button>
+              <Link to="user-saved-list">
+              <Button>Save This Trip!</Button>
+              </Link>
             </CardBody>
           </Link>
         </Card>

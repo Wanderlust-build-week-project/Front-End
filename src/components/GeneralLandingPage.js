@@ -135,7 +135,6 @@ function FeaturedTrips() {
           <Link to="user-browsing-page">
           <button className="learn-more">Learn More</button>
           </Link>
-          <Route path="/user-browsing-page" component={UserBrowsingCards}/>
         </div>
        
       ))}
