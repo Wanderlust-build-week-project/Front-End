@@ -23,25 +23,25 @@ function App() {
         <Route exact path="/login" component={Login} />
         <PrivateRoute path="/general-landing-page" component={GeneralLandingPage} />
         <PrivateRoute path="/creator-landing-page" component={CreatorLandingPage} />
-        <PrivateRoute path="/user-browsing-page" component={UserBrowsingPage} />
-        <PrivateRoute
+        <Route path="/user-browsing-page" component={UserBrowsingPage} />
+        <Route
           exact
           path="/creator-viewing-page"
           component={CreatorViewingPage}
         />
-        <PrivateRoute
+        <Route
           path="/creator-create-experience-form"
           component={CreatorCreateExperienceForm}
         />
-        <PrivateRoute
+        <Route
           path="/creator-update-experience-form"
           component={CreatorUpdateExperienceForm}
         />
-         <PrivateRoute
+         <Route
           path="/choose-location"
           component={ChooseLocation}
         />
-        <PrivateRoute
+        <Route
           path="/search-results"
           component={SearchResults}
         />
