@@ -1,7 +1,7 @@
 # Wanderlust
 Wanderlust is the Airbnb of travel. We link travelers with travel guides from all around the globe.
 [Checkout Wanderlust Marketing Page](https://epic-minsky-812a3d.netlify.com/index.html)
-[Checkout the Creators of Wanderlust]([https://epic-minsky-812a3d.netlify.com/about.html](https://epic-minsky-812a3d.netlify.com/about.html))
+[Checkout the Creators of Wanderlust](https://epic-minsky-812a3d.netlify.com/about.html)
 ### Travelers:
 As a traveler simply sign up with a user account and browse or search through a long list of experiences. Select a trip and get in contact with trip organizers to plan your next adventure.
 ### Trip Organizers:

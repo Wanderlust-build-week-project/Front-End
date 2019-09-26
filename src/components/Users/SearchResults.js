@@ -76,7 +76,9 @@ const SearchResults = (props) => {
               </Card>
               )
             })}
+          <div className = "return-button">
             <button onClick = {()=> {props.history.push('/user-browsing-page')}}>Return to browsing</button>
+          </div>
           </div>
       </>
     )
