@@ -6,7 +6,6 @@ import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { Input } from "semantic-ui-react";
 import { AnimatedProps } from "@react-spring/animated";
 import { Route } from "react-router-dom";
-import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
@@ -146,7 +145,6 @@ const [exprnc, setExprnc] = useState([{}]);
     </div>
       <Header />
       <UserBrowsingWrapper>
-        <BrowserCarousel />
         <BrowseAllListWrapper>
           {browser.map(browse => {
             return (
