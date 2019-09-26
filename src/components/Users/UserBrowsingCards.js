@@ -16,6 +16,15 @@ import {
   Button
 } from "reactstrap";
 import styled from "styled-components";
+import Experience from "./Experience";
+
+const Butn = styled.div`
+top: 25px;
+right: 25px;
+border: 1px solid grey;
+padding: 5px 10px;
+background-color: lightseagreen;
+`
 
 
 /* good going on the reactstrap cards, Cori. They look really nice :) */
@@ -50,6 +59,12 @@ const UserBrowsingCards = props => {
         console.log(error);
       });
   }, []);
+
+  const saveExprnc = (props) => {
+    const addToSavedList = props.addToSaved;
+    addToSavedList(Experience)
+  }
+
   return (
     <div>
       <CardDeck>
@@ -63,9 +78,9 @@ const UserBrowsingCards = props => {
               <CardText>{props.hours}</CardText>
               <CardText>{props.date}</CardText>
               <CardText>{oranizer.oranizer}</CardText>
-              <Link to="user-saved-list">
-              <Button>Save This Trip!</Button>
-              </Link>
+              
+              <Butn onCLick={props.exprnc}>Save This Trip!</Butn>
+              <Link to="/user-saved"/>
             </CardBody>
           </Link>
         </Card>
