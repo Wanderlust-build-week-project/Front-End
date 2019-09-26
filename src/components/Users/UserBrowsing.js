@@ -3,7 +3,7 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 import axios from "axios";
 import UserBrowsingCards from "./UserBrowsingCards";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
-import { Search } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
 import { AnimatedProps } from "@react-spring/animated";
 import { Route } from "react-router-dom";
 import BrowserCarousel from "./BrowserCarousel";
@@ -132,26 +132,21 @@ const [exprnc, setExprnc] = useState([{}]);
   return (
     <>
     <div className = "searchForm">
-      <form onSubmit={submitSearch}>
-        <input
-          type="text"
-          placeholder="Search Experiences"
-          onChange = {(e) => handleChange(e)}
-          value = {search.searchTerm}
-        ></input>
-      </form>
+      <div>
+        <form onSubmit={submitSearch}>
+          <h2 className = "search-header">Search Experiences</h2>
+          <input
+            type="text"
+            placeholder="Search Experiences"
+            onChange = {(e) => handleChange(e)}
+            value = {search.searchTerm}
+          ></input>
+        </form>
+      </div>
     </div>
       <Header />
       <UserBrowsingWrapper>
         <BrowserCarousel />
-        <form onSubmit={submitSearch}>
-          <input
-            name="search"
-            type="text"
-            placeholder="Search Experiences"
-            onChange={handleChange}
-          ></input>
-        </form>
         <BrowseAllListWrapper>
           {browser.map(browse => {
             return (

@@ -75,10 +75,9 @@ const UserBrowsingCards = props => {
               <CardTitle>{props.title}</CardTitle>
               <CardSubtitle>{props.desc}</CardSubtitle>
               <CardText>{place.place}</CardText>
-              <CardText>{props.hours}</CardText>
+              <CardText>Duration: {props.hours} Hours</CardText>
               <CardText>{props.date}</CardText>
-              <CardText>{oranizer.oranizer}</CardText>
-              
+              <CardText>Organizer: {oranizer.oranizer}</CardText>
               <Butn onCLick={props.exprnc}>Save This Trip!</Butn>
               <Link to="/user-saved"/>
             </CardBody>
