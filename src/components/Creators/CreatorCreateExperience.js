@@ -44,7 +44,7 @@ const CreatorCreateExperienceForm = (props) => {
     event.preventDefault();
 
     axiosWithAuth().get(`https://wanderlustbw.herokuapp.com/locations/location/${place}`)
-    .then(async response => {
+    .then(response => {
       if (response.data.id > 0) {
         var grabbedID = response.data.id;
         console.log("grabbed id:", grabbedID)
