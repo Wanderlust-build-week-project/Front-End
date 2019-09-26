@@ -26,9 +26,7 @@ const Experience = (props) => {
 
   return (
     <div>
-      {exprnc.map(saved => (
-        <UserSaved
-      ))}
+     
      
     </div>
   );
