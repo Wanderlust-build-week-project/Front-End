@@ -1,0 +1,20 @@
+.header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    z-index: 2;
+    top: 0;
+    padding: 1vh 5vw;
+  }
+  
+  title {
+    font-size: 2rem;
+  }
+  
+  .link {
+  text-decoration: none;
+  margin-left: 40px;
+  }
