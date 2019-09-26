@@ -1,7 +1,8 @@
+
 //this page will not be displayed but will take in data from the User Browsing page and return it as cards
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Route, Link } from "react-router-dom";
+import { NavLink, Link, Route } from "react-router-dom";
 import UserExperience from "./UserExperience";
 import {
   Card,
@@ -11,9 +12,21 @@ import {
   CardLink,
   CardTitle,
   CardSubtitle,
-  CardDeck
+  CardDeck,
+  Button
 } from "reactstrap";
 import styled from "styled-components";
+import Experience from "./Experience";
+
+const Butn = styled.div`
+top: 25px;
+right: 25px;
+border: 1px solid grey;
+padding: 5px 10px;
+background-color: lightseagreen;
+`
+
+
 /* good going on the reactstrap cards, Cori. They look really nice :) */
 const UserBrowsingCards = props => {
   // console.log (props)
@@ -46,6 +59,12 @@ const UserBrowsingCards = props => {
         console.log(error);
       });
   }, []);
+
+  const saveExprnc = (props) => {
+    const addToSavedList = props.addToSaved;
+    addToSavedList(Experience)
+  }
+
   return (
     <div>
       <CardDeck>
@@ -59,11 +78,14 @@ const UserBrowsingCards = props => {
               <CardText>Duration: {props.hours} Hours</CardText>
               <CardText>{props.date}</CardText>
               <CardText>Organizer: {oranizer.oranizer}</CardText>
+              <Butn onCLick={props.exprnc}>Save This Trip!</Butn>
+              <Link to="/user-saved"/>
             </CardBody>
           </Link>
         </Card>
       </CardDeck>
     </div>
+
   );
 };
 export default UserBrowsingCards;
