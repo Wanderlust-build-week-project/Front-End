@@ -21,17 +21,16 @@ function App() {
       <div className="App">
         <Route exact path="/" component={SignUp} />
         <Route exact path="/login" component={Login} />
-<<<<<<< HEAD
-        <Route path="/general-landing-page" component={GeneralLandingPage} />
-        <Route path="/creator-landing-page" component={CreatorLandingPage} />
-        <Route path="/user-browsing-page" component={UserBrowsingPage} />
-        <Route
-=======
-        <PrivateRoute path="/general-landing-page" component={GeneralLandingPage} />
-        <PrivateRoute path="/creator-landing-page" component={CreatorLandingPage} />
+        <PrivateRoute
+          path="/general-landing-page"
+          component={GeneralLandingPage}
+        />
+        <PrivateRoute
+          path="/creator-landing-page"
+          component={CreatorLandingPage}
+        />
         <PrivateRoute path="/user-browsing-page" component={UserBrowsingPage} />
         <PrivateRoute
->>>>>>> eaa7755252c721e6d34c662a8f4fb6369082563f
           exact
           path="/creator-viewing-page"
           component={CreatorViewingPage}
@@ -44,19 +43,8 @@ function App() {
           path="/creator-update-experience-form"
           component={CreatorUpdateExperienceForm}
         />
-<<<<<<< HEAD
-        <Route path="/choose-location" component={ChooseLocation} />
-        <Route path="/search-results" component={SearchResults} />
-=======
-         <PrivateRoute
-          path="/choose-location"
-          component={ChooseLocation}
-        />
-        <PrivateRoute
-          path="/search-results"
-          component={SearchResults}
-        />
->>>>>>> eaa7755252c721e6d34c662a8f4fb6369082563f
+        <PrivateRoute path="/choose-location" component={ChooseLocation} />
+        <PrivateRoute path="/search-results" component={SearchResults} />
       </div>
     </Router>
   );
