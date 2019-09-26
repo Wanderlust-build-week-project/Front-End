@@ -6,7 +6,7 @@ import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 import UserSaved from "../components/Users/UserSaved";
-import Header from './Users/UserHeader';
+import Header from "./Users/UserHeader";
 
 /* ===== styled components ======= */
 
@@ -43,7 +43,7 @@ const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
 
   const [experiences, setExperiences] = useState();
-  
+
   /* https://wanderlustbw.herokuapp.com/experiences */
   useEffect(() => {
     setExperiences(data);
@@ -53,7 +53,7 @@ const GeneralLandingPage = props => {
   /* ======= RETURN =========  */
   return (
     <>
-      <Header/>
+      <Header />
       <GeneralLanding>
         <div className="create-or-find">
           <div className="featured-experiences">

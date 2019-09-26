@@ -111,7 +111,6 @@ tripsData.map((trip, index) => {
   `;
 
   const BrowseAllListWrapper = styled.div`
-    border: 2px solid yellow;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
