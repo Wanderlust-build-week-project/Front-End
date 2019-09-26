@@ -1,93 +1,103 @@
-import React, {useState} from "react";
-import axiosWithAuth from '../utils/axiosWithAuth';
-import styled from 'styled-components';
-import './Login.css';
+import React, { useState } from "react";
+import {Link} from 'react-router-dom';
+import axios from "axios";
 
-const Login = (props) => {
-  const [credentials, setCredentials] = useState({username: "", password: ""});
+import Header from "./Header";
+import "./Login.css";
+import axiosWithAuth from "../utils/axiosWithAuth";
+
+const Login = props => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: ""
+  });
 
   const handleChange = e => {
-    setCredentials({...credentials, [e.target.name]: e.target.value});
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const Header = styled.div`
-    color: white;
-    font-size: 3rem;
-    width: 100%;
-    height: 10vh;
-    padding: 2.5% 50px;
-    background-image: linear-gradient(to right, #565f64, #eeeff3);
-  `;
+  const submitLogin = e => {
+    e.preventDefault();
+    var cont = document.getElementById("creator");
+    // console.log(cont)
+    if (cont.checked) {
+      loginOrganizer();
+      // console.log(`organizer logged in`)
+    } else {
+      loginUser();
+      // console.log(`guest logged in`)
+    }
+  };
 
-  const Login = styled.div`
-    position: absolute;
-    right: 200px;
-    top: 20%;
-    width: 40%;
-    max-width: 500px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
-  `;
+  const loginUser = () => {
+    axios
+      .post("https://wanderlustbw.herokuapp.com/auth/guests/login", credentials)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        axiosWithAuth()
+          .get(
+            `https://wanderlustbw.herokuapp.com/guests/username/${credentials.username}`
+          )
+          .then(res2 => {
+            console.log("this is the second responce guest", res2.data.id);
+            localStorage.setItem("userID", res2.data.id);
+            props.history.push(`/general-landing-page`);
+          });
+      })
+      .catch(err => console.log(err));
+  };
 
-  const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    padding: 50px 0 30px;
-    width: 100%;
-  `;
-
-  const Input  = styled.input`
-    padding: 5px 10px;
-    margin: 10px auto;
-    width: 50%;
-    border-radius: 10px;
-    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
-  `;
-
-  const Button = styled.button`
-    padding: 5px 40px;
-    margin: 10px auto;
-    border-radius: 10px;
-    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
-  `;
-
-
-//   const login = e => {
-//     e.preventDefault();
-//     axiosWithAuth()
-//       .post('', credentials)
-//       .then(res => {
-//         localStorage.setItem('token', res.data.payload);
-//         props.history.push('/');
-//         console.log(res)
-//       })
-//       .catch(err => console.log(err));
-//   };
-
+  const loginOrganizer = () => {
+    axios
+      .post(
+        "https://wanderlustbw.herokuapp.com/auth/organizers/login",
+        credentials
+      )
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        // console.log('this is the res', res.data.token)
+        axiosWithAuth()
+          .get(
+            `https://wanderlustbw.herokuapp.com/organizers/username/${credentials.username}`
+          )
+          .then(res2 => {
+            console.log("this is the second responce organizer", res2.data.id);
+            localStorage.setItem("userID", res2.data.id);
+            props.history.push(`/creator-landing-page`);
+          });
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <>
-      <Header>Wanderlust</Header>
-      <Login>
-        <Form>
-          <Input
-          type="text"
-          name="username"
-          placeholder = "User Name"
-          value={credentials.username}
-          onChange={handleChange}
+      <Header />
+      <div className="login">
+        <form className="form" onSubmit={submitLogin}>
+          <input
+            className="input"
+            type="text"
+            name="username"
+            placeholder="User Name"
+            value={credentials.username}
+            onChange={handleChange}
           />
-          <Input
-          type="password"
-          name="password"
-          placeholder = "Password"
-          value={credentials.password}
-          onChange={handleChange}
+          <input
+            className="input"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={credentials.password}
+            onChange={handleChange}
           />
-          <Button>Log in</Button>
-        </Form>
-      </Login>
+          <div id="checkIfOrganizerLogin" className="are-you">
+            <label htmlFor="creator">Are you an Organizer? </label>
+            <input type="checkbox" id="creator" name="creatorCheckbox" />
+          </div>
+          <Link to="/">Don't have an account?</Link>
+          <button className="btn">Log in</button>
+        </form>
+      </div>
     </>
   );
 };

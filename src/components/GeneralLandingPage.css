@@ -1,0 +1,97 @@
+.create-or-find {
+  /* border: 2px solid purple; */
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gerneral-header-nav {
+  font-size: 1.2rem;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: fit-content;
+  /* border: 2px solid blue; */
+}
+
+/* .header-link {
+  border: 1px solid black;
+} */
+
+.create-or-find {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-trips-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.create-or-find-btns {
+  /* border: 2px solid purple; */
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+
+  margin: 2vh auto;
+}
+
+.search-trips-btn {
+  /* border: 2px solid green; */
+  padding: 20px;
+  color: white;
+  height: 15vh;
+  margin: 30px auto;
+}
+
+.become-a-creator {
+  /* border: 2px solid blue; */
+  padding: 20px;
+  color: white;
+  height: 15vh;
+  margin: 30px auto;
+}
+
+.featured-experiences {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-experiences button {
+  margin-top: 20px;
+}
+
+.trip-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 10px;
+}
+
+.trip-card button {
+  padding: 5px 40px;
+  margin: 10px auto;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+.trip-card img {
+  border-radius: 30px;
+}
+
+.create-own-experience {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}

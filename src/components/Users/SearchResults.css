@@ -1,0 +1,25 @@
+.sorry {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+.sorry-message {
+    color: white;
+}
+
+.return-button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 2vh auto;
+
+}
