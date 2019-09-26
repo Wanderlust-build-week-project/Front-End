@@ -2,18 +2,15 @@
 //this page will not be displayed but will take in data from the User Browsing page and return it as cards
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { NavLink, Link, Route } from "react-router-dom";
-import UserExperience from "./UserExperience";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardImg,
   CardText,
   CardBody,
-  CardLink,
   CardTitle,
   CardSubtitle,
   CardDeck,
-  Button
 } from "reactstrap";
 import styled from "styled-components";
 import Experience from "./Experience";

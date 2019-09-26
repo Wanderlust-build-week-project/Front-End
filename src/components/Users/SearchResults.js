@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import {
-    Card, CardImg, CardText, CardBody, CardLink,
-    CardTitle, CardSubtitle, Row, Col
+    Card, CardText, CardBody, 
+    CardTitle, CardSubtitle
 } from 'reactstrap';
 import Header from "./UserHeader";
 import "./SearchResults.css"
