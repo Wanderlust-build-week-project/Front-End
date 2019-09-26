@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
+import Header from './CreatorHeader.js';
 import styled from 'styled-components';
-import Header from '../Header';
 import Card from './CreatorViewingCards';
 import './CVP.css';
+
 const CreatorViewingPage = (props) => {
+  
   const [experiences, setExperiences] = useState([{
     id: "",
     name: "",
