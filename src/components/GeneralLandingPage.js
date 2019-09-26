@@ -92,6 +92,7 @@ const GeneralLandingPage = props => {
           <Route path="/experiences" component={UserBrowsingCards} />
         </nav>
       </Header>
+
       <GeneralLanding>
         <div className="create-or-find">
           <div className="featured-experiences">

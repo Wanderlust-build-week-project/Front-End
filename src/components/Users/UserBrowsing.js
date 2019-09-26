@@ -11,7 +11,7 @@ import BrowserCarousel from "./BrowserCarousel";
 import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
-import ContactForm from "./ContactForm";
+
 const UserBrowsing = props => {
   const [browser, setBrowser] = useState([]);
   const [search, setSearch] = useState("");
