@@ -63,7 +63,7 @@ const SearchResults = (props) => {
           <Header />
             {searchOutcome.map(outcome => {
               return (
-                <Card>
+                <Card key = {outcome.id}>
                 <CardBody>
                 <CardTitle>Name: {outcome.name}</CardTitle>
                 <CardSubtitle>Description: {outcome.description}</CardSubtitle>
