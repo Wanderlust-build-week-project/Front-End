@@ -211,6 +211,7 @@ const CreatorUpdateExperienceForm = props => {
             </div>
           </div>
           <span className="button-span">
+<<<<<<< HEAD
             <Link to="/creator-viewing-page">
               <button className="create-btn" onClick={handleUpdate}>
                 Save
@@ -219,6 +220,10 @@ const CreatorUpdateExperienceForm = props => {
             <Link to="/creator-viewing-page">
               <button className="create-btn">Return</button>
             </Link>
+=======
+            <Link to="/creator-viewing-page"><button className="create-btn" type="submit" onClick = {handleUpdate}>Save</button></Link>
+            <Link to="/creator-viewing-page"><button className="create-btn">Cancel</button></Link>
+>>>>>>> eaa7755252c721e6d34c662a8f4fb6369082563f
           </span>
         </form>
       </div>

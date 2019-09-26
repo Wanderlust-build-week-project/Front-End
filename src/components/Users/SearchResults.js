@@ -5,6 +5,7 @@ import {
     CardTitle, CardSubtitle, Row, Col
 } from 'reactstrap';
 import Header from "./UserHeader";
+import "./SearchResults.css"
 
 const SearchResults = (props) => {
   // console.log(props)
@@ -81,9 +82,14 @@ const SearchResults = (props) => {
     )
   } else {
     return (
-      <div>
-        ...Loading
-      </div>
+      <>
+        <div className = "sorry">
+          <h1 className = 'sorry-message'>Sorry no Trips were found matching that Description</h1>
+        </div>
+        <div className = "return-button">
+          <button onClick = {()=> {props.history.push('/user-browsing-page')}}>Return to browsing</button>
+        </div>
+      </>
     )
   }
 }

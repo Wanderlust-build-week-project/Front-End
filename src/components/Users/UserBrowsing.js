@@ -3,7 +3,7 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 import axios from "axios";
 import UserBrowsingCards from "./UserBrowsingCards";
 import { Gallery, GalleryImage } from "react-gesture-gallery";
-import { Search } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
 import { AnimatedProps } from "@react-spring/animated";
 import { Route } from "react-router-dom";
 import BrowserCarousel from "./BrowserCarousel";
@@ -57,12 +57,14 @@ tripsData.map((trip, index) => {
   console.log("splash: ", slpashImages);
 });
 }, []); */
-
+const [exprnc, setExprnc] = useState([{}]);
+  
   useEffect(() => {
     axiosWithAuth()
       .get(`https://wanderlustbw.herokuapp.com/exp`)
       .then(res => {
         setBrowser(res.data);
+        setExprnc(res.data.id, res.data.name)
         // console.log(res)
       })
       .catch(err => console.log("Loading Error Experinces", err));
@@ -125,17 +127,22 @@ tripsData.map((trip, index) => {
       0 2px 4px rgba(0, 0, 0, 0.24);
   `;
 
+
+  
   return (
     <>
     <div className = "searchForm">
-      <form onSubmit={submitSearch}>
-        <input
-          type="text"
-          placeholder="Search Experiences"
-          onChange = {(e) => handleChange(e)}
-          value = {search.searchTerm}
-        ></input>
-      </form>
+      <div>
+        <form onSubmit={submitSearch}>
+          <h2 className = "search-header">Search Experiences</h2>
+          <input
+            type="text"
+            placeholder="Search Experiences"
+            onChange = {(e) => handleChange(e)}
+            value = {search.searchTerm}
+          ></input>
+        </form>
+      </div>
     </div>
       <Header />
       <UserBrowsingWrapper>
@@ -154,6 +161,7 @@ tripsData.map((trip, index) => {
                   organizerID={browse.organizer_id}
                   location={browse.location_id}
                   image={splashPhotos[browse.id]}
+                  exprnc={exprnc}
                 />
               </div>
             );
@@ -163,5 +171,5 @@ tripsData.map((trip, index) => {
     </>
   );
 };
-
 export default UserBrowsing;
+  

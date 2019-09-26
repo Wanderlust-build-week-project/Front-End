@@ -1,3 +1,9 @@
 .searchForm {
-    margin-top: 150px;
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+}
+
+.search-header {
+    color: white;
 }
