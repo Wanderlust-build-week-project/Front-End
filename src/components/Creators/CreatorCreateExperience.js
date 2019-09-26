@@ -82,7 +82,7 @@ const CreatorCreateExperienceForm = (props) => {
         console.log("New experience response:", res)
         props.history.push(`/creator-viewing-page`)
       })
-      .catch(err => console.log("Unable to submit experience.", err.message));
+      .catch(err => console.log("Unable to submit experience.", err, experience));
   };
 
   return (
