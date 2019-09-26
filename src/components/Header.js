@@ -47,8 +47,9 @@ export default function Header() {
           <NaviLink>
             <Link to="/">Home</Link>
           </NaviLink>
-          <NaviLink>
-            <Link to="/">Link3</Link>
+          <NaviLink> 
+            <Link to="/user-browsing-page">
+            Experiences</Link>
           </NaviLink>
           <NaviLink onClick={handleLogout}>
             <Link to="/">Logout</Link>
