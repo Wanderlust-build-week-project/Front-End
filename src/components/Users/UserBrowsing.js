@@ -140,7 +140,6 @@ tripsData.map((trip, index) => {
       <Header />
       <UserBrowsingWrapper>
         <BrowserCarousel />
-<<<<<<< HEAD
         <form onSubmit={submitSearch}>
           <input
             name="search"
@@ -149,8 +148,6 @@ tripsData.map((trip, index) => {
             onChange={handleChange}
           ></input>
         </form>
-=======
->>>>>>> ca9a7376aa6549c84b0a7af4b53a9486c4a3cc3e
         <BrowseAllListWrapper>
           {browser.map(browse => {
             return (

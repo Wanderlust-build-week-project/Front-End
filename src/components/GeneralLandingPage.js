@@ -6,11 +6,8 @@ import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 import UserSaved from "../components/Users/UserSaved";
-<<<<<<< HEAD
 import Experience from "./Users/Experience"
-=======
-import Header from './Users/UserHeader';
->>>>>>> ca9a7376aa6549c84b0a7af4b53a9486c4a3cc3e
+import Header  from "./Header"
 
 /* ===== styled components ======= */
 
@@ -90,6 +87,7 @@ const GeneralLandingPage = props => {
       </GeneralLanding>
       <Footer>
         <UserSaved />
+        <Experience />
       </Footer>
       
     </>
