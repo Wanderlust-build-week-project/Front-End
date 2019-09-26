@@ -167,8 +167,8 @@ const CreatorUpdateExperienceForm = (props) => {
             </div>
           </div>
           <span className="button-span">
-            <Link to="/creator-viewing-page"><button className="create-btn" type="submit">Save</button></Link>
-            <Link to="/creator-viewing-page"><button className="create-btn">Return</button></Link>
+            <Link to="/creator-viewing-page"><button className="create-btn" type="submit" onClick = {handleUpdate}>Save</button></Link>
+            <Link to="/creator-viewing-page"><button className="create-btn">Cancel</button></Link>
           </span>
         </form>
       </div>
