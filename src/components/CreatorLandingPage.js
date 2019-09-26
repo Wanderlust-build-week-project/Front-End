@@ -120,7 +120,9 @@ function FeaturedTrips() {
         <div className="trip-card" key={trip.id}>
           <h3>Adventure: {trip.name}</h3>
           <img src={trip.image_url} alt="" />
+          <Link to="user-browsing-page">
           <button className="learn-more">Learn More</button>
+          </Link>
         </div>
       ))}
     </div>
