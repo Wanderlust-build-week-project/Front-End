@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import axios from "axios";
 import UserBrowsingCards from "./UserBrowsingCards";
-import { Gallery, GalleryImage } from "react-gesture-gallery";
-import { Input } from "semantic-ui-react";
-import { AnimatedProps } from "@react-spring/animated";
-import { Route } from "react-router-dom";
-import UserExperience from "./UserExperience";
 import styled from "styled-components";
 import splashPhotos from "../../images/gerneral-landing-images/unSplashData";
 import './UserBrowsing.css';
@@ -19,43 +13,7 @@ const UserBrowsing = props => {
   })
   const [foundItems, setFoundItems] = useState([])
   var idArray = []
-  /* will do get requests for organizers and experiences to set these states below
-   working on this at night, currently not able to axiosWithAuth, will troubleshoot with backend tomorrow 
- */
-  /* path to photos tripsData.map(trip=> trip.urls.small) sizes can also be full, raw, regular or thumb IF you know how to map over a nested array (I don't).*/
-  const [tripsData, setTripsData] = useState([{}]);
-  /* I copy/pasted 50 small photos from console.log(tripsData) put them in images/generalLandingImages/unSplash.js imported to this file. we can use these outdoor photos in conjuntion with 2nd index paramater on map. They are the same order as tripsData */
-  const [slpashImages, setSplashImages] = useState(splashPhotos);
 
-  // unsplash API get
-  //Greg's api key for unsplash. rate limit 50 request/hr
-  /* const APIKey =
-    "87bd86fadbc47436e983dd82ec6c282a4d0a502f71262a7b9631d0ac0b204bca";
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.unsplash.com/search/photos?page=1&query=outdoors&per_page=50&client_id=${APIKey}`
-      )
-      .then(response => {
-        const results = response.data.results;
-
-        
-        setTripsData(results);
-      })
-      .catch(error => {
-        console.log("Whoops from UserBrowsing.js", error);
-      });
-  }, []);
-
-  console.log("trips", tripsData); */
-
-  /* useEffect(() => {
-tripsData.map((trip, index) => {
-  let smallImg = trip.urls;
-  setSplashImages([...slpashImages, smallImg]);
-  console.log("splash: ", slpashImages);
-});
-}, []); */
 const [exprnc, setExprnc] = useState([{}]);
   
   useEffect(() => {
