@@ -8,15 +8,15 @@ import {
   CardTitle,
   CardText
 } from "reactstrap";
+import axios from "axios"
 
-const Experience = () => {
-  /* const [exprnc, setExprnc] = useState({}); */
+const Experience = (props) => {
+  const [exprnc, setExprnc] = useState({});
 
-  /* useEffect(() => {
-        const id = props.match.param.id;
-        //need to set params from call 
-        axiosWithAuth
-            .get(`https://wanderlustbw.herokuapp.com/exp/experience/${id}`)
+    useEffect(() => {
+        // axiosWithAuth
+        axios
+            .get(`https://wanderlustbw.herokuapp.com/exp/experience/id`)
             .then(res => {
                 console.log(res)
                 setExprnc(res.data)
@@ -24,27 +24,20 @@ const Experience = () => {
             .catch(err => console.log(err)
             )
 
-    }, [props.match.param.id])
+    }, [])
 
-  const saveExpr = () => {
-    const addToSaved = props.addToSaved;
-    addToSaved(exprnc);
-  };
+    const saveExpr = () => {
+        const addToSaved = props.addToSaved;
+        addToSaved(exprnc);
+    };
 
-  if (!exprnc) {
-    return <div>Loading Trip information...</div>;
-  } */
+    if (!exprnc) {
+        return <div>Loading Trip information...</div>;
+    }
+    console.log("saved props", props)
 
   return (
-    <div>
-      <Card>
-        <CardHeader>Saved Trips!</CardHeader>
-        <CardBody>
-          <CardTitle>{props.title}t</CardTitle>
-          <CardText>{props.desc}</CardText>
-          <Button onClick={props.exprnc}>Save This Trip</Button>
-        </CardBody>
-      </Card>
+   <div>
     </div>
   );
 };

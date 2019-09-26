@@ -6,6 +6,7 @@ import { NavLink, Link, Route } from "react-router-dom";
 import UserBrowsingCards from "./Users/UserBrowsingCards";
 import data from "../images/gerneral-landing-images/dummyData";
 import UserSaved from "../components/Users/UserSaved";
+import Experience from "./Users/Experience"
 
 /* ===== styled components ======= */
 const Header = styled.div`
@@ -52,6 +53,10 @@ const NaviLink = styled.span`
   text-decoration: none;
   margin-left: 40px;
 `;
+
+const Footer = styled.div`
+margin-top: 200px;
+`
 /* ====== COMPONENT =======  */
 const GeneralLandingPage = props => {
   /* ====== VARS, STATE, FUNCS ========== */
@@ -118,7 +123,10 @@ const GeneralLandingPage = props => {
           </div>
         </div>
       </GeneralLanding>
-      {/*  <UserSaved /> */}
+      <Footer>
+        <UserSaved />
+      </Footer>
+      
     </>
   );
 };
