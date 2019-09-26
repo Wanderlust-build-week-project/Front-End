@@ -5,6 +5,7 @@ import {
     CardTitle
 } from "reactstrap";
 import styled from "styled-components"
+import Experience from './Experience';
 
 const Butn = styled.button`
   padding: 5px 40px;
@@ -16,13 +17,12 @@ const Butn = styled.button`
 `;
 
 const UserSaved = (props) => {
-  
+
     return (
         <div>
             <Card>
                 <h3>Saved Trips!</h3>
-                    <CardTitle>Summer Hike</CardTitle>
-                
+                <CardTitle></CardTitle>
                 <Link to="/general-landing-page">
                     <Butn>Save More Trips!</Butn>
                 </Link>

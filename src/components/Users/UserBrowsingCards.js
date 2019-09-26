@@ -16,6 +16,8 @@ import {
   Button
 } from "reactstrap";
 import styled from "styled-components";
+
+
 /* good going on the reactstrap cards, Cori. They look really nice :) */
 const UserBrowsingCards = props => {
   // console.log (props)
@@ -69,6 +71,7 @@ const UserBrowsingCards = props => {
         </Card>
       </CardDeck>
     </div>
+
   );
 };
 export default UserBrowsingCards;

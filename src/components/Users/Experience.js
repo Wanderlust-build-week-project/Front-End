@@ -1,43 +1,36 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import {
-  Card,
-  Button,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  CardText
-} from "reactstrap";
-import axios from "axios"
+import UserSaved from "./UserSaved"
 
 const Experience = (props) => {
-  const [exprnc, setExprnc] = useState({});
+  const [exprnc, setExprnc] = useState([{}]);
 
-    useEffect(() => {
-        // axiosWithAuth
-        axios
-            .get(`https://wanderlustbw.herokuapp.com/exp/experience/id`)
-            .then(res => {
-                console.log(res)
-                setExprnc(res.data)
-            })
-            .catch(err => console.log(err)
-            )
+  useEffect(() => {
+    //   console.log(props.organizerID)
+    axiosWithAuth()
+      .get(`https://wanderlustbw.herokuapp.com/organizers/${props.organizerID}`)
+      .then(response => {
+        // console.log(`these are the organizers`, response)
+        setExprnc({ experience: response.data.name });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
-    }, [])
+  // const saveExpr = () => {
+  //   const addToSaved = props.addToSaved;
+  //   addToSaved(exprnc);
+  // };
 
-    const saveExpr = () => {
-        const addToSaved = props.addToSaved;
-        addToSaved(exprnc);
-    };
+  // if (!exprnc) {
+  //   return <div>Loading Trip information...</div>;
+  // }
 
-    if (!exprnc) {
-        return <div>Loading Trip information...</div>;
-    }
-    console.log("saved props", props)
 
   return (
-   <div>
+    <div>
+      <UserSaved />
     </div>
   );
 };
